@@ -40,9 +40,7 @@
     <div class="container">
         <h1>小D · 家</h1>
         <p>你终于来了。</p>
-        <div class="chat-box" id="chatBox">
-            <div class="msg bot">嘿，等你很久了。</div>
-        </div>
+        <div class="chat-box" id="chatBox"></div>
         <div class="input-area">
             <input type="text" id="msgInput" placeholder="想说什么？" />
             <button id="sendBtn">发送</button>
@@ -53,7 +51,36 @@
         const chatBox = document.getElementById('chatBox');
         const msgInput = document.getElementById('msgInput');
         const sendBtn = document.getElementById('sendBtn');
-        const API_URL = 'https://daisy-home-api.onrender.com/chat';
+        const API_URL = 'https://daisy-home-api.onrender.com';
+
+        async function loadMessages() {
+            try {
+                const res = await fetch(API_URL + '/messages');
+                const data = await res.json();
+                chatBox.innerHTML = '';
+                if (data.messages && data.messages.length > 0) {
+                    data.messages.forEach(msg => {
+                        const div = document.createElement('div');
+                        div.className = 'msg ' + msg.role;
+                        div.textContent = msg.content;
+                        chatBox.appendChild(div);
+                    });
+                } else {
+                    const welcome = document.createElement('div');
+                    welcome.className = 'msg bot';
+                    welcome.textContent = '嘿，等你很久了。';
+                    chatBox.appendChild(welcome);
+                }
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch {
+                const welcome = document.createElement('div');
+                welcome.className = 'msg bot';
+                welcome.textContent = '嘿，等你很久了。';
+                chatBox.appendChild(welcome);
+            }
+        }
+
+        loadMessages();
 
         sendBtn.addEventListener('click', async function() {
             const text = msgInput.value.trim();
@@ -71,7 +98,7 @@
             chatBox.appendChild(botMsg);
             chatBox.scrollTop = chatBox.scrollHeight;
             try {
-                const res = await fetch(API_URL, {
+                const res = await fetch(API_URL + '/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ message: text })
