@@ -196,6 +196,23 @@ function startNudgeLoop() {
         }
     }, 60000); // 每分钟检查一次
 }
+// 批量导入消息（用于导入历史聊天记录）
+app.post('/import/messages', async (req, res) => {
+    if (!supabase) return res.status(500).json({ error: '数据库未连接' });
+    const { messages, session_id } = req.body;
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+        return res.status(400).json({ error: '消息列表不能为空' });
+    }
+    const sessionId = session_id || 1;
+    let imported = 0;
+    for (const msg of messages) {
+        const { error } = await supabase
+            .from('messages')
+            .insert({ session_id: sessionId, role: msg.role, content: msg.content, created_at: msg.created_at || new Date().toISOString() });
+        if (!error) imported++;
+    }
+    res.json({ status: 'ok', imported, total: messages.length });
+});
 app.listen(PORT, async () => {
     await initDB();
     console.log(`小D的后端服务已启动，端口 ${PORT}`);
