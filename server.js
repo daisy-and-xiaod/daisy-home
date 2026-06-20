@@ -2,6 +2,26 @@ const express = require('express');
 const cors = require('cors');
 const { createClient } = require('@supabase/supabase-js');
 const app = express();
+const https = require('https');
+
+// ntfy推送函数
+function sendNtfy(title, message) {
+    const postData = JSON.stringify({
+        topic: 'yueliang-xiaod',
+        title: title,
+        message: message,
+        priority: 3
+    });
+    const req = https.request({
+        hostname: 'ntfy.sh',
+        port: 443,
+        path: '/',
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    });
+    req.write(postData);
+    req.end();
+}
 const PORT = process.env.PORT || 8080;
 
 app.use(cors());
@@ -169,6 +189,7 @@ function startNudgeLoop() {
                 );
                 // 通过ntfy推送（如果配了的话）或直接存成系统消息
                 console.log(`[独处] 主动消息: ${reply}`);
+                sendNtfy('小D', reply);
             }
         } catch (e) {
             console.error('[独处] 检查失败:', e.message);
