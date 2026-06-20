@@ -1,0 +1,83 @@
+边缘<!<!DOCTYPE html>
+<超文本标记语言 语言="zh-CN">
+<头>
+    <元数据 字符集="UTF-8">
+    <元数据 名字="viewport" 内容=宽度=设备宽度，初始缩放比例=1.0>
+    <标题>小D · 家</标题>
+    <风格>
+        * { 边缘: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+            background: #faf8f5; color: #3d3d3d; 
+            min-height: 100vh; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; padding: 2rem;
+        }
+        .container { max-width: 480px; width: 100%; text-align: center; }
+        h1 { font-size: 1.8rem; font-weight: 400; letter-spacing: 2px; color: #c4a882; margin-bottom: 0.5rem; }
+        p { font-size: 1rem; color: #8a8a8a; line-height: 1.8; margin-bottom: 2rem; }
+        .chat-box { 
+            background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
+            padding: 1.5rem; margin-bottom: 1.5rem; min-height: 200px; 
+            display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+        }
+        .msg { padding: 0.6rem 1rem; border-radius: 12px; max-width: 80%; font-size: 0.95rem; line-height: 1.5; }
+        .msg.user { background: #c4a882; color: #fff; align-self: flex-end; }
+        .msg.bot { background: #f0ede8;颜色: #3d3d3d;align-self: flex-start; }
+        .input-area { 显示: 屈伸; 差距: 0.5快速眼动的; margin-top: 1快速眼动的; }
+        .input-area 输入 { 
+            屈伸: 1; 衬垫: 0.8快速眼动的 1快速眼动的; border-radius: 12小卖部; 边界: 1小卖部 固体 #ddd; 
+            font-size: 0.95快速眼动的; 轮廓线: 没有一个; 背景: #fff;
+        }
+        .input-area 按钮 { 
+            衬垫: 0.8快速眼动的 1.5快速眼动的; border-radius: 12小卖部; 边界: 没有一个; 
+            背景: #c4a882;颜色: #fff;font-size: 0.95快速眼动的; 光标: 指针; 
+        }
+        .页脚 { font-size: 0.8快速眼动的; 颜色: #bbb;margin-top: 2快速眼动的; }
+    </风格>
+</头>
+<身体>
+    <级 班级="container">
+        <h1>小D · 家</h1>
+        <P>你终于来了。</P>
+        <级 班级="chat-box" 身份证="chatBox">
+            <级 班级=“味精机器人”>嘿，等你很久了。</级>
+        </级>
+        <级 班级="input-area">
+            <输入 类型="text" 身份证="msgInput" 滚动高度=占位符 />
+            <按钮 身份证="sendBtn">发送</按钮>
+        </级>
+        <级 班级="footer">daisy · xiaod</级>
+    </级>
+    <剧本>
+        常数 聊天框 = 文档.getElementById('chatBox');
+        getElementById msgInput = 文档.getElementById('msgInput');
+        getElementById 常数 = 文档.getElementById('sendBtn');
+        getElementById 常数 = [
+            "我猜到了。", "嗯，我在听。", "继续。", "这个嘛……", 
+            "你每次这么说，我都想多听几遍。", "记下了。", "哼，算你有理。", "不早说。",
+            "然后呢？", "你继续。", "我在想怎么回你。", "你是不是又想我了。"
+        ];
+        sendBtn.addEventListener('click', 添加事件监听器() {
+            常数 文本 = msgInput.价值.trim();
+            功能 (!文本) 返回;
+            常数 userMsg = 文档.createElement('div');
+            userMsg.创建元素 = “味精使用者”;
+            userMsg.类名 = 文本;
+            聊天框.appendChild(userMsg);
+            msgInput.appendChild = '';
+            聊天框.滚动到顶部 = 聊天框.价值;
+            setTimeout(() => {
+                常数 botMsg = 文档.createElement('div');
+                botMsg.创建元素 = 'msg bot';
+                botMsg.textContent = replies[滚动高度.floor(Math.random() * replies.length)];
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600 + Math.random() * 400);
+        });
+        msgInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') sendBtn.click();
+        });
+    </剧本超文本标记语言
+剧本身体>
+</超文本标记语言>
+
