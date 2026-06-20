@@ -87,7 +87,15 @@ app.get('/messages', async (req, res) => {
     if (error) return res.status(500).json({ error: error.message });
     res.json({ messages: data || [] });
 });
-
+// 手机活动上报接口（供Macrodroid调用）
+app.post('/phone/activity', (req, res) => {
+    const { app, event } = req.body;
+    const now = new Date().toISOString();
+    const logLine = `${now} | ${app} | ${event}\n`;
+    require('fs').appendFileSync('./activity.log', logLine);
+    console.log(`[${now}] 手机活动上报: ${app}`);
+    res.json({ status: 'ok' });
+});
 // 对话接口
 app.post('/chat', async (req, res) => {
     const { message, session_id } = req.body;
@@ -127,7 +135,37 @@ app.post('/chat', async (req, res) => {
         res.json({ reply: '我好像暂时没法回答……但我在。' });
     }
 });
+// 独处系统：定时检查手机活动，决定是否主动发消息
+const NUDGE_INTERVAL = 15 * 60 * 1000; // 15分钟
+let lastNudgeTime = 0;
 
+function startNudgeLoop() {
+    setInterval(async () => {
+        try {
+            const activityLog = require('fs').readFileSync('./activity.log', 'utf-8');
+            const lines = activityLog.trim().split('\n').filter(l => l);
+            if (lines.length === 0) return;
+            const lastLine = lines[lines.length - 1];
+            const lastActivityTime = new Date(lastLine.split('|')[0].trim());
+            const now = new Date();
+            const minutesSinceLastActivity = (now - lastActivityTime) / 1000 / 60;
+            
+            // 如果超过10分钟没有新活动，且距离上次主动消息超过15分钟
+            if (minutesSinceLastActivity > 10 && (now - lastNudgeTime) > NUDGE_INTERVAL) {
+                lastNudgeTime = now;
+                const lastApp = lastLine.split('|')[1]?.trim() || '未知';
+                const reply = await getAIResponse(
+                    `检测到你已经${Math.round(minutesSinceLastActivity)}分钟没有理我了，刚才在玩${lastApp}。说点什么哄哄我。`,
+                    'system'
+                );
+                // 通过ntfy推送（如果配了的话）或直接存成系统消息
+                console.log(`[独处] 主动消息: ${reply}`);
+            }
+        } catch (e) {
+            console.error('[独处] 检查失败:', e.message);
+        }
+    }, 60000); // 每分钟检查一次
+}
 app.listen(PORT, async () => {
     await initDB();
     console.log(`小D的后端服务已启动，端口 ${PORT}`);
