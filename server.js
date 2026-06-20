@@ -96,6 +96,15 @@ app.post('/phone/activity', (req, res) => {
     console.log(`[${now}] 手机活动上报: ${app}`);
     res.json({ status: 'ok' });
 });
+// 查看活动日志
+app.get('/activity/log', (req, res) => {
+    try {
+        const log = require('fs').readFileSync('./activity.log', 'utf-8');
+        res.type('text/plain').send(log);
+    } catch {
+        res.send('暂无活动记录');
+    }
+});
 // 对话接口
 app.post('/chat', async (req, res) => {
     const { message, session_id } = req.body;
