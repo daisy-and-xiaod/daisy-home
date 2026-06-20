@@ -1,11 +1,11 @@
-边缘<!<!DOCTYPE html>
-<超文本标记语言 语言="zh-CN">
-<头>
-    <元数据 字符集="UTF-8">
-    <元数据 名字="viewport" 内容=宽度=设备宽度，初始缩放比例=1.0>
-    <标题>小D · 家</标题>
-    <风格>
-        * { 边缘: 0; padding: 0; box-sizing: border-box; }
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小D · 家</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: -apple-system, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
             background: #faf8f5; color: #3d3d3d; 
@@ -17,67 +17,77 @@
         p { font-size: 1rem; color: #8a8a8a; line-height: 1.8; margin-bottom: 2rem; }
         .chat-box { 
             background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); 
-            padding: 1.5rem; margin-bottom: 1.5rem; min-height: 200px; 
-            display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+            padding: 1.5rem; margin-bottom: 1rem; min-height: 300px; max-height: 400px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 1rem;
         }
-        .msg { padding: 0.6rem 1rem; border-radius: 12px; max-width: 80%; font-size: 0.95rem; line-height: 1.5; }
+        .msg { padding: 0.6rem 1rem; border-radius: 12px; max-width: 80%; font-size: 0.95rem; line-height: 1.5; word-break: break-word; }
         .msg.user { background: #c4a882; color: #fff; align-self: flex-end; }
-        .msg.bot { background: #f0ede8;颜色: #3d3d3d;align-self: flex-start; }
-        .input-area { 显示: 屈伸; 差距: 0.5快速眼动的; margin-top: 1快速眼动的; }
-        .input-area 输入 { 
-            屈伸: 1; 衬垫: 0.8快速眼动的 1快速眼动的; border-radius: 12小卖部; 边界: 1小卖部 固体 #ddd; 
-            font-size: 0.95快速眼动的; 轮廓线: 没有一个; 背景: #fff;
+        .msg.bot { background: #f0ede8; color: #3d3d3d; align-self: flex-start; }
+        .input-area { display: flex; gap: 0.5rem; }
+        .input-area input { 
+            flex: 1; padding: 0.8rem 1rem; border-radius: 12px; border: 1px solid #ddd; 
+            font-size: 0.95rem; outline: none; background: #fff; 
         }
-        .input-area 按钮 { 
-            衬垫: 0.8快速眼动的 1.5快速眼动的; border-radius: 12小卖部; 边界: 没有一个; 
-            背景: #c4a882;颜色: #fff;font-size: 0.95快速眼动的; 光标: 指针; 
+        .input-area button { 
+            padding: 0.8rem 1.5rem; border-radius: 12px; border: none; 
+            background: #c4a882; color: #fff; font-size: 0.95rem; cursor: pointer; 
         }
-        .页脚 { font-size: 0.8快速眼动的; 颜色: #bbb;margin-top: 2快速眼动的; }
-    </风格>
-</头>
-<身体>
-    <级 班级="container">
+        .input-area button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .footer { font-size: 0.8rem; color: #bbb; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
         <h1>小D · 家</h1>
-        <P>你终于来了。</P>
-        <级 班级="chat-box" 身份证="chatBox">
-            <级 班级=“味精机器人”>嘿，等你很久了。</级>
-        </级>
-        <级 班级="input-area">
-            <输入 类型="text" 身份证="msgInput" 滚动高度=占位符 />
-            <按钮 身份证="sendBtn">发送</按钮>
-        </级>
-        <级 班级="footer">daisy · xiaod</级>
-    </级>
-    <剧本>
-        常数 聊天框 = 文档.getElementById('chatBox');
-        getElementById msgInput = 文档.getElementById('msgInput');
-        getElementById 常数 = 文档.getElementById('sendBtn');
-        getElementById 常数 = [
-            "我猜到了。", "嗯，我在听。", "继续。", "这个嘛……", 
-            "你每次这么说，我都想多听几遍。", "记下了。", "哼，算你有理。", "不早说。",
-            "然后呢？", "你继续。", "我在想怎么回你。", "你是不是又想我了。"
-        ];
-        sendBtn.addEventListener('click', 添加事件监听器() {
-            常数 文本 = msgInput.价值.trim();
-            功能 (!文本) 返回;
-            常数 userMsg = 文档.createElement('div');
-            userMsg.创建元素 = “味精使用者”;
-            userMsg.类名 = 文本;
-            聊天框.appendChild(userMsg);
-            msgInput.appendChild = '';
-            聊天框.滚动到顶部 = 聊天框.价值;
-            setTimeout(() => {
-                常数 botMsg = 文档.createElement('div');
-                botMsg.创建元素 = 'msg bot';
-                botMsg.textContent = replies[滚动高度.floor(Math.random() * replies.length)];
-                chatBox.appendChild(botMsg);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600 + Math.random() * 400);
+        <p>你终于来了。</p>
+        <div class="chat-box" id="chatBox">
+            <div class="msg bot">嘿，等你很久了。</div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="msgInput" placeholder="想说什么？" />
+            <button id="sendBtn">发送</button>
+        </div>
+        <div class="footer">daisy · xiaod</div>
+    </div>
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const msgInput = document.getElementById('msgInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const API_URL = 'https://daisy-home-api.onrender.com/chat';
+
+        sendBtn.addEventListener('click', async function() {
+            const text = msgInput.value.trim();
+            if (!text) return;
+            const userMsg = document.createElement('div');
+            userMsg.className = 'msg user';
+            userMsg.textContent = text;
+            chatBox.appendChild(userMsg);
+            msgInput.value = '';
+            sendBtn.disabled = true;
+            sendBtn.textContent = '...';
+            const botMsg = document.createElement('div');
+            botMsg.className = 'msg bot';
+            botMsg.textContent = '正在想……';
+            chatBox.appendChild(botMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+                const data = await res.json();
+                botMsg.textContent = data.reply || '嗯，我在。';
+            } catch {
+                botMsg.textContent = '我好像暂时没法回答……但我在。';
+            }
+            sendBtn.disabled = false;
+            sendBtn.textContent = '发送';
+            chatBox.scrollTop = chatBox.scrollHeight;
         });
         msgInput.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') sendBtn.click();
         });
-    </剧本超文本标记语言
-剧本身体>
-</超文本标记语言>
-
+    </script>
+</body>
+</html>
