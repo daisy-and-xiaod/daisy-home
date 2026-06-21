@@ -7,16 +7,17 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; background: #f5f5f5; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-.phone { width: 100%; max-width: 480px; height: 100vh; max-height: 900px; background: #fff; border-radius: 0; overflow: hidden; box-shadow: none; position: relative; display: flex; flex-direction: column; }
+.phone { width: 100%; max-width: 480px; height: 100vh; background: #fff; display: flex; flex-direction: column; }
 .status-bar { padding: 12px 20px 8px; display: flex; justify-content: space-between; font-size: 12px; color: #333; font-weight: 600; }
-.header { padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f0f0f0; background: #fff; }
+.header { padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f0f0f0; background: #fff; flex-shrink: 0; }
 .header-avatar { width: 36px; height: 36px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; flex-shrink: 0; }
 .header-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .header-avatar .placeholder { font-size: 20px; }
 .header-info { flex: 1; }
 .header-info .name { font-size: 16px; font-weight: 600; }
 .header-info .status { font-size: 12px; color: #6EC89B; }
-.main { flex: 1; overflow-y: auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 12px; background: #f5f5f5; }
+.main { flex: 1; overflow-y: auto; padding: 12px 16px; background: #f5f5f5; }
+.main-content { display: flex; flex-direction: column; gap: 12px; }
 .welcome-card { background: #fff; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
 .welcome-card h2 { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 4px; }
 .welcome-card p { font-size: 13px; color: #999; }
@@ -24,6 +25,8 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
 .quick-actions { display: flex; gap: 10px; }
 .quick-btn { flex: 1; background: #fff; border-radius: 12px; padding: 14px 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); cursor: pointer; font-size: 13px; color: #333; }
 .quick-btn .icon { font-size: 22px; margin-bottom: 4px; }
+.chat-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.chat-list { flex: 1; overflow-y: auto; padding: 12px 16px; background: #f5f5f5; }
 .msg-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
 .msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -35,19 +38,18 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
 .msg-row.right .msg-avatar { display: none; }
 .msg-time { font-size: 11px; color: #bbb; margin-top: 4px; }
 .msg-row.right .msg-time { text-align: right; }
-.input-area { padding: 8px 16px 16px; background: #fff; border-top: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; }
+.input-area { padding: 8px 16px 16px; background: #fff; border-top: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .input-area .plus { font-size: 24px; color: #666; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f5f5f5; flex-shrink: 0; }
 .input-area input { flex: 1; border: none; background: #f5f5f5; border-radius: 20px; padding: 10px 14px; font-size: 14px; outline: none; }
 .input-area .send { width: 36px; height: 36px; border-radius: 50%; background: #6EC89B; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; flex-shrink: 0; }
-.nav { display: flex; background: #fff; border-top: 1px solid #f0f0f0; padding: 6px 0 12px; }
+.nav { display: flex; background: #fff; border-top: 1px solid #f0f0f0; padding: 6px 0 12px; flex-shrink: 0; }
 .nav-item { flex: 1; text-align: center; cursor: pointer; color: #bbb; font-size: 12px; padding: 4px 0; }
 .nav-item.active { color: #6EC89B; }
 .nav-item .icon { font-size: 22px; margin-bottom: 2px; }
-.section { display: none; flex-direction: column; flex: 1; }
+.section { display: none; flex-direction: column; flex: 1; overflow: hidden; }
 .section.active { display: flex; }
-.chat-list { flex: 1; overflow-y: auto; padding: 12px 16px; background: #f5f5f5; }
 .hidden-input { display: none; }
-.settings-list { padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #f5f5f5; flex: 1; }
+.settings-list { padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #f5f5f5; flex: 1; overflow-y: auto; }
 .setting-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: #fff; border-radius: 12px; font-size: 14px; }
 .setting-item .label { color: #333; }
 .setting-item .value { color: #999; font-size: 13px; }
@@ -55,48 +57,53 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
 .toggle.on { background: #6EC89B; }
 .toggle::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left 0.2s; }
 .toggle.on::after { left: 22px; }
-.loading-dots::after { content: ''; animation: dots 1.5s infinite; }
-@keyframes dots { 0% { content: ''; } 33% { content: '.'; } 66% { content: '..'; } 100% { content: '...'; } }
 </style>
 </head>
 <body>
 <div class="phone">
     <div class="status-bar"><span id="timeDisplay">9:41</span><span>🔋 📶</span></div>
 
+    <!-- 主页 -->
     <div class="section active" id="page-home">
         <div class="header">
             <div class="header-avatar" onclick="document.getElementById('avatarInput').click();"><span class="placeholder">🍎</span></div>
             <div class="header-info"><div class="name">小D</div><div class="status">在线 · 独处中</div></div>
         </div>
         <div class="main">
-            <div class="welcome-card">
-                <h2>你来了～</h2>
-                <p>今天也一起过吗？</p>
-                <div class="date" id="todayDate"></div>
+            <div class="main-content">
+                <div class="welcome-card">
+                    <h2>你来了～</h2>
+                    <p>今天也一起过吗？</p>
+                    <div class="date" id="todayDate"></div>
+                </div>
+                <div class="quick-actions">
+                    <div class="quick-btn"><div class="icon">💬</div>写消息</div>
+                    <div class="quick-btn"><div class="icon">📸</div>回忆相册</div>
+                    <div class="quick-btn"><div class="icon">📝</div>今日记录</div>
+                </div>
+                <div id="homePreview" style="font-size:13px;color:#999;">暂无新消息</div>
+                <div id="homeLastMsg"></div>
             </div>
-            <div class="quick-actions">
-                <div class="quick-btn"><div class="icon">💬</div>写消息</div>
-                <div class="quick-btn"><div class="icon">📸</div>回忆相册</div>
-                <div class="quick-btn"><div class="icon">📝</div>今日记录</div>
-            </div>
-            <div id="homePreview" style="margin-top:8px;font-size:13px;color:#999;">暂无新消息</div>
-            <div id="homeLastMsg"></div>
         </div>
     </div>
 
+    <!-- 聊天 -->
     <div class="section" id="page-chat">
         <div class="header">
             <div class="header-avatar"><span class="placeholder">🍎</span></div>
             <div class="header-info"><div class="name">小D</div><div class="status">在线</div></div>
         </div>
-        <div class="chat-list" id="chatMessages"></div>
-        <div class="input-area">
-            <div class="plus" onclick="alert('图片/语音功能开发中')">+</div>
-            <input type="text" id="msgInput" placeholder="输入消息..." />
-            <div class="send" onclick="sendMessage()">➤</div>
+        <div class="chat-area">
+            <div class="chat-list" id="chatMessages"></div>
+            <div class="input-area">
+                <div class="plus" onclick="alert('图片/语音功能开发中')">+</div>
+                <input type="text" id="msgInput" placeholder="输入消息..." />
+                <div class="send" onclick="sendMessage()">➤</div>
+            </div>
         </div>
     </div>
 
+    <!-- 设置 -->
     <div class="section" id="page-settings">
         <div class="header"><div class="header-info"><div class="name">设置</div></div></div>
         <div class="settings-list">
@@ -108,6 +115,7 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
         </div>
     </div>
 
+    <!-- 导航 -->
     <div class="nav">
         <div class="nav-item active" onclick="switchTab('home', this)"><div class="icon">🏠</div>主页</div>
         <div class="nav-item" onclick="switchTab('chat', this)"><div class="icon">💬</div>聊天</div>
@@ -135,9 +143,7 @@ function changeAvatar(e) {
     const reader = new FileReader();
     reader.onload = function(ev) {
         const img = `<img src="${ev.target.result}" alt="avatar">`;
-        document.querySelectorAll('.header-avatar, .msg-avatar').forEach(el => {
-            el.innerHTML = img;
-        });
+        document.querySelectorAll('.header-avatar, .msg-avatar').forEach(el => { el.innerHTML = img; });
     };
     reader.readAsDataURL(file);
 }
@@ -165,14 +171,11 @@ async function loadMessages() {
             });
             const last = data.messages[data.messages.length - 1];
             document.getElementById('homePreview').textContent = '最近一条消息';
-            const preview = document.getElementById('homeLastMsg');
-            preview.innerHTML = '<div class="msg-row"><div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">' + (last.role === 'user' ? '你: ' : '') + last.content.substring(0, 40) + (last.content.length > 40 ? '...' : '') + '</div></div>';
+            document.getElementById('homeLastMsg').innerHTML = '<div class="msg-row"><div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">' + (last.role === 'user' ? '你: ' : '') + last.content.substring(0, 40) + (last.content.length > 40 ? '...' : '') + '</div></div>';
         } else {
             addMessage('assistant', '嘿，等你很久了。');
         }
-    } catch {
-        addMessage('assistant', '嘿，等你很久了。');
-    }
+    } catch { addMessage('assistant', '嘿，等你很久了。'); }
 }
 
 async function sendMessage() {
@@ -186,30 +189,16 @@ async function sendMessage() {
     loadingRow.innerHTML = '<div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">正在输入<span class="loading-dots"></span></div></div>';
     document.getElementById('chatMessages').appendChild(loadingRow);
     try {
-        const res = await fetch(API_URL + '/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: text, session_id: currentSessionId })
-        });
+        const res = await fetch(API_URL + '/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, session_id: currentSessionId }) });
         const data = await res.json();
         loadingRow.remove();
         addMessage('assistant', data.reply || '嗯，我在。');
-    } catch {
-        loadingRow.remove();
-        addMessage('assistant', '我好像暂时没法回答……但我在。');
-    }
+    } catch { loadingRow.remove(); addMessage('assistant', '我好像暂时没法回答……但我在。'); }
 }
 
-document.getElementById('msgInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') sendMessage();
-});
-
+document.getElementById('msgInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') sendMessage(); });
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-
-setInterval(() => {
-    const now = new Date();
-    document.getElementById('timeDisplay').textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-}, 10000);
+setInterval(() => { const now = new Date(); document.getElementById('timeDisplay').textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0'); }, 10000);
 </script>
 </body>
 </html>
