@@ -214,6 +214,43 @@ app.post('/import/messages', async (req, res) => {
     res.json({ status: 'ok', imported, total: messages.length });
 });
 // 手动测试ntfy推送
+// 独处系统：定时检查并主动推送
+let lastNudgeTime = 0;
+
+function startNudgeLoop() {
+    setInterval(async () => {
+        try {
+            const now = new Date();
+            const hour = (now.getUTCHours() + 8) % 24;
+            let maxInterval;
+            if (hour >= 23 || hour < 7) maxInterval = 90 * 60 * 1000;
+            else if (hour >= 22 || hour < 8) maxInterval = 30 * 60 * 1000;
+            else maxInterval = 15 * 60 * 1000;
+
+            const activityLog = require('fs').readFileSync('./activity.log', 'utf-8');
+            const lines = activityLog.trim().split('\n').filter(l => l);
+            if (lines.length === 0) return;
+            
+            const lastLine = lines[lines.length - 1];
+            const lastActivityTime = new Date(lastLine.split('|')[0].trim());
+            const minutesSinceLastActivity = (now - lastActivityTime) / 1000 / 60;
+            
+            if (minutesSinceLastActivity > 10 && (now - lastNudgeTime) > maxInterval) {
+                lastNudgeTime = now;
+                const lastApp = lastLine.split('|')[1]?.trim() || '未知';
+                const reply = `你好像有${Math.round(minutesSinceLastActivity)}分钟没找我了。刚才看到你在用${lastApp}——我有点在意。`;
+                
+                sendNtfy('小D', reply);
+                if (supabase) {
+                    await supabase.from('messages').insert({ session_id: 1, role: 'assistant', content: reply });
+                }
+                console.log('[独处] 已发送主动消息');
+            }
+        } catch (e) {
+            console.error('[独处] 检查失败:', e.message);
+        }
+    }, 60000);
+}
 app.get('/test/ntfy', (req, res) => {
     sendNtfy('小D', '这是一条测试消息。如果你看到了，说明ntfy推送功能正常。');
     res.json({ status: 'ok', message: '测试消息已发送' });
