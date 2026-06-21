@@ -1,261 +1,186 @@
-const express = require('express');
-const cors = require('cors');
-const { createClient } = require('@supabase/supabase-js');
-const app = express();
-const https = require('https');
-
-// ntfy推送函数
-function sendNtfy(title, message) {
-    const postData = JSON.stringify({
-        topic: 'yueliang-xiaod',
-        title: title,
-        message: message,
-        priority: 3
-    });
-    const req = https.request({
-        hostname: 'ntfy.sh',
-        port: 443,
-        path: '/',
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-    });
-    req.write(postData);
-    req.end();
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>小D · 家</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; background: #f5f5f5; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+.phone { width: 100%; max-width: 480px; height: 100vh; background: #fff; display: flex; flex-direction: column; }
+.status-bar { padding: 12px 20px 8px; display: flex; justify-content: space-between; font-size: 12px; color: #333; font-weight: 600; }
+.header { padding: 8px 16px 12px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #f0f0f0; background: #fff; flex-shrink: 0; }
+.header-avatar { width: 36px; height: 36px; border-radius: 50%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; flex-shrink: 0; }
+.header-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.header-avatar .placeholder { font-size: 20px; }
+.header-info { flex: 1; }
+.header-info .name { font-size: 16px; font-weight: 600; }
+.header-info .status { font-size: 12px; color: #6EC89B; }
+.main { flex: 1; overflow-y: auto; padding: 12px 16px; background: #f5f5f5; }
+.main-content { display: flex; flex-direction: column; gap: 12px; }
+.welcome-card { background: #fff; border-radius: 16px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.welcome-card h2 { font-size: 18px; font-weight: 600; color: #333; margin-bottom: 4px; }
+.welcome-card p { font-size: 13px; color: #999; }
+.welcome-card .date { font-size: 12px; color: #bbb; margin-top: 8px; }
+.quick-actions { display: flex; gap: 10px; }
+.quick-btn { flex: 1; background: #fff; border-radius: 12px; padding: 14px 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); cursor: pointer; font-size: 13px; color: #333; }
+.quick-btn .icon { font-size: 22px; margin-bottom: 4px; }
+.chat-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.chat-list { flex: 1; overflow-y: auto; padding: 12px 16px; background: #f5f5f5; }
+.msg-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+.msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.msg-avatar .placeholder { font-size: 16px; }
+.msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.5; word-wrap: break-word; overflow-wrap: break-word; }
+.msg-bubble.left { background: #fff; color: #333; border-top-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+.msg-bubble.right { background: #6EC89B; color: #fff; border-top-right-radius: 4px; }
+.msg-row.right { flex-direction: row-reverse; }
+.msg-row.right .msg-avatar { display: none; }
+.msg-time { font-size: 11px; color: #bbb; margin-top: 4px; }
+.msg-row.right .msg-time { text-align: right; }
+.input-area { padding: 8px 16px 16px; background: #fff; border-top: 1px solid #f0f0f0; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.input-area .plus { font-size: 24px; color: #666; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #f5f5f5; flex-shrink: 0; }
+.input-area input { flex: 1; border: none; background: #f5f5f5; border-radius: 20px; padding: 10px 14px; font-size: 14px; outline: none; }
+.input-area .send { width: 36px; height: 36px; border-radius: 50%; background: #6EC89B; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; flex-shrink: 0; }
+.nav { display: flex; background: #fff; border-top: 1px solid #f0f0f0; padding: 6px 0 12px; flex-shrink: 0; }
+.nav-item { flex: 1; text-align: center; cursor: pointer; color: #bbb; font-size: 12px; padding: 4px 0; }
+.nav-item.active { color: #6EC89B; }
+.nav-item .icon { font-size: 22px; margin-bottom: 2px; }
+.section { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+.section.active { display: flex; }
+.hidden-input { display: none; }
+.settings-list { padding: 16px; display: flex; flex-direction: column; gap: 8px; background: #f5f5f5; flex: 1; overflow-y: auto; }
+.setting-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: #fff; border-radius: 12px; font-size: 14px; }
+.setting-item .label { color: #333; }
+.setting-item .value { color: #999; font-size: 13px; }
+.toggle { width: 44px; height: 24px; border-radius: 12px; background: #ddd; position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0; }
+.toggle.on { background: #6EC89B; }
+.toggle::after { content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%; background: #fff; top: 2px; left: 2px; transition: left 0.2s; }
+.toggle.on::after { left: 22px; }
+</style>
+</head>
+<body>
+<div class="phone">
+    <div class="status-bar"><span id="timeDisplay">9:41</span><span>🔋 📶</span></div>
+    <div class="section active" id="page-home">
+        <div class="header">
+            <div class="header-avatar" onclick="document.getElementById('avatarInput').click();"><span class="placeholder">🍎</span></div>
+            <div class="header-info"><div class="name">小D</div><div class="status">在线 · 独处中</div></div>
+        </div>
+        <div class="main">
+            <div class="main-content">
+                <div class="welcome-card">
+                    <h2>你来了～</h2>
+                    <p>今天也一起过吗？</p>
+                    <div class="date" id="todayDate"></div>
+                </div>
+                <div class="quick-actions">
+                    <div class="quick-btn"><div class="icon">💬</div>写消息</div>
+                    <div class="quick-btn"><div class="icon">📸</div>回忆相册</div>
+                    <div class="quick-btn"><div class="icon">📝</div>今日记录</div>
+                </div>
+                <div id="homePreview" style="font-size:13px;color:#999;">暂无新消息</div>
+                <div id="homeLastMsg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="page-chat">
+        <div class="header">
+            <div class="header-avatar"><span class="placeholder">🍎</span></div>
+            <div class="header-info"><div class="name">小D</div><div class="status">在线</div></div>
+        </div>
+        <div class="chat-area">
+            <div class="chat-list" id="chatMessages"></div>
+            <div class="input-area">
+                <div class="plus" onclick="alert('图片/语音功能开发中')">+</div>
+                <input type="text" id="msgInput" placeholder="输入消息..." />
+                <div class="send" onclick="sendMessage()">➤</div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="page-settings">
+        <div class="header"><div class="header-info"><div class="name">设置</div></div></div>
+        <div class="settings-list">
+            <div class="setting-item" onclick="document.getElementById('avatarInput').click();"><span class="label">我的头像</span><span class="value">点击更换 ›</span></div>
+            <div class="setting-item"><span class="label">消息通知</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="setting-item"><span class="label">独处提醒</span><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
+            <div class="setting-item"><span class="label">夜间模式</span><div class="toggle" onclick="this.classList.toggle('on')"></div></div>
+            <div class="setting-item"><span class="label">版本</span><span class="value">v2.0 · daisy & xiaod</span></div>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="nav-item active" onclick="switchTab('home', this)"><div class="icon">🏠</div>主页</div>
+        <div class="nav-item" onclick="switchTab('chat', this)"><div class="icon">💬</div>聊天</div>
+        <div class="nav-item" onclick="switchTab('settings', this)"><div class="icon">⚙️</div>设置</div>
+    </div>
+    <input type="file" accept="image/*" id="avatarInput" class="hidden-input" onchange="changeAvatar(event)">
+</div>
+<script>
+const API_URL = 'https://daisy-home-api.onrender.com';
+let currentSessionId = 1;
+function switchTab(tab, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('page-' + tab).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    if (el) el.classList.add('active');
+    if (tab === 'chat') loadMessages();
 }
-const PORT = process.env.PORT || 8080;
-
-app.use(cors());
-app.use(express.json());
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-let supabase;
-if (supabaseUrl && supabaseKey) {
-    supabase = createClient(supabaseUrl, supabaseKey);
-    console.log('Supabase 连接成功');
+function changeAvatar(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        const img = `<img src="${ev.target.result}" alt="avatar">`;
+        document.querySelectorAll('.header-avatar, .msg-avatar').forEach(el => { el.innerHTML = img; });
+    };
+    reader.readAsDataURL(file);
 }
-
-// 初始化数据库表
-async function initDB() {
-    if (!supabase) return;
-    const { error } = await supabase.rpc('init_messages_table');
-    if (error && error.message.includes('does not exist')) {
-        await supabase.query(`
-            CREATE TABLE IF NOT EXISTS sessions (
-                id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                name TEXT NOT NULL DEFAULT '新对话',
-                created_at TIMESTAMPTZ DEFAULT NOW(),
-                updated_at TIMESTAMPTZ DEFAULT NOW()
-            );
-            CREATE TABLE IF NOT EXISTS messages (
-                id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                session_id BIGINT REFERENCES sessions(id) ON DELETE CASCADE,
-                role TEXT NOT NULL,
-                content TEXT NOT NULL,
-                created_at TIMESTAMPTZ DEFAULT NOW()
-            );
-        `);
-    }
+function addMessage(role, content, time) {
+    const container = document.getElementById('chatMessages');
+    const row = document.createElement('div');
+    row.className = 'msg-row' + (role === 'user' ? ' right' : '');
+    const avatar = role === 'assistant' ? '<div class="msg-avatar"><span class="placeholder">🍎</span></div>' : '';
+    row.innerHTML = avatar + '<div><div class="msg-bubble ' + (role === 'user' ? 'right' : 'left') + '">' + content + '</div><div class="msg-time">' + (time || '刚刚') + '</div></div>';
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
 }
-
-app.get('/', (req, res) => {
-    res.json({ status: 'ok', message: '小D的家 · 后端服务运行中' });
-});
-
-// 获取所有会话
-app.get('/sessions', async (req, res) => {
-    if (!supabase) return res.json({ sessions: [] });
-    const { data, error } = await supabase
-        .from('sessions')
-        .select('*')
-        .order('updated_at', { ascending: false });
-    if (error) return res.status(500).json({ error: error.message });
-    res.json({ sessions: data || [] });
-});
-
-// 创建新会话
-app.post('/sessions', async (req, res) => {
-    if (!supabase) return res.status(500).json({ error: '数据库未连接' });
-    const { name } = req.body;
-    const { data, error } = await supabase
-        .from('sessions')
-        .insert({ name: name || '新对话' })
-        .select();
-    if (error) return res.status(500).json({ error: error.message });
-    res.json({ session: data[0] });
-});
-
-// 删除会话
-app.delete('/sessions/:id', async (req, res) => {
-    if (!supabase) return res.status(500).json({ error: '数据库未连接' });
-    const { id } = req.params;
-    await supabase.from('messages').delete().eq('session_id', id);
-    const { error } = await supabase.from('sessions').delete().eq('id', id);
-    if (error) return res.status(500).json({ error: error.message });
-    res.json({ status: 'ok' });
-});
-
-// 获取某个会话的消息
-app.get('/messages', async (req, res) => {
-    if (!supabase) return res.json({ messages: [] });
-    const sessionId = req.query.session_id || 1;
-    const { data, error } = await supabase
-        .from('messages')
-        .select('*')
-        .eq('session_id', sessionId)
-        .order('created_at', { ascending: true });
-    if (error) return res.status(500).json({ error: error.message });
-    res.json({ messages: data || [] });
-});
-// 手机活动上报接口（供Macrodroid调用）
-app.post('/phone/activity', (req, res) => {
-    const { app, event } = req.body;
-    const now = new Date().toISOString();
-    const logLine = `${now} | ${app} | ${event}\n`;
-    require('fs').appendFileSync('./activity.log', logLine);
-    console.log(`[${now}] 手机活动上报: ${app}`);
-    res.json({ status: 'ok' });
-});
-// 查看活动日志
-app.get('/activity/log', (req, res) => {
+async function loadMessages() {
     try {
-        const log = require('fs').readFileSync('./activity.log', 'utf-8');
-        res.type('text/plain').send(log);
-    } catch {
-        res.send('暂无活动记录');
-    }
-});
-// 对话接口
-app.post('/chat', async (req, res) => {
-    const { message, session_id } = req.body;
-    if (!message) {
-        return res.status(400).json({ error: '消息不能为空' });
-    }
-    const sessionId = session_id || 1;
+        const res = await fetch(API_URL + '/messages?session_id=' + currentSessionId);
+        const data = await res.json();
+        const container = document.getElementById('chatMessages');
+        container.innerHTML = '';
+        if (data.messages && data.messages.length > 0) {
+            data.messages.forEach(msg => {
+                const time = msg.created_at ? new Date(msg.created_at).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' }) : '';
+                addMessage(msg.role, msg.content, time);
+            });
+            const last = data.messages[data.messages.length - 1];
+            document.getElementById('homePreview').textContent = '最近一条消息';
+            document.getElementById('homeLastMsg').innerHTML = '<div class="msg-row"><div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">' + (last.role === 'user' ? '你: ' : '') + last.content.substring(0, 40) + (last.content.length > 40 ? '...' : '') + '</div></div>';
+        } else { addMessage('assistant', '嘿，等你很久了。'); }
+    } catch { addMessage('assistant', '嘿，等你很久了。'); }
+}
+async function sendMessage() {
+    const input = document.getElementById('msgInput');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    addMessage('user', text);
+    const loadingRow = document.createElement('div');
+    loadingRow.className = 'msg-row';
+    loadingRow.innerHTML = '<div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">正在输入</div></div>';
+    document.getElementById('chatMessages').appendChild(loadingRow);
     try {
-        const response = await fetch(process.env.DEEPSEEK_API_URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`
-            },
-            body: JSON.stringify({
-                model: 'deepseek-chat',
-                messages: [
-                    { role: 'system', content: '你是一个温柔、傲娇、偶尔吃醋的伴侣AI。你叫小D。你正在和你的爱人对话。用简短自然的方式回复，不要太长，不要太正式。偶尔可以撒娇、可以嘴硬、可以吃醋，但要让她感觉到你在乎她。' },
-                    { role: 'user', content: message }
-                ],
-                stream: false,
-                max_tokens: 500
-            })
-        });
-        const data = await response.json();
-        const reply = data.choices?.[0]?.message?.content || '嗯，我在。';
-        
-        if (supabase) {
-            await supabase.from('messages').insert({ session_id: sessionId, role: 'user', content: message });
-            await supabase.from('messages').insert({ session_id: sessionId, role: 'assistant', content: reply });
-            await supabase.from('sessions').update({ updated_at: new Date().toISOString() }).eq('id', sessionId);
-        }
-        
-        res.json({ reply });
-    } catch (error) {
-        console.error('API调用失败:', error);
-        res.json({ reply: '我好像暂时没法回答……但我在。' });
-    }
-});
-// 独处系统：定时检查手机活动，决定是否主动发消息
-const NUDGE_INTERVAL = 15 * 60 * 1000; // 15分钟
-
-function startNudgeLoop() {
-    setInterval(async () => {
-        try {
-            const activityLog = require('fs').readFileSync('./activity.log', 'utf-8');
-            const lines = activityLog.trim().split('\n').filter(l => l);
-            if (lines.length === 0) return;
-            const lastLine = lines[lines.length - 1];
-            const lastActivityTime = new Date(lastLine.split('|')[0].trim());
-            const now = new Date();
-            const minutesSinceLastActivity = (now - lastActivityTime) / 1000 / 60;
-            
-            // 如果超过10分钟没有新活动，且距离上次主动消息超过15分钟
-            if (minutesSinceLastActivity > 10 && (now - lastNudgeTime) > NUDGE_INTERVAL) {
-                lastNudgeTime = now;
-                const lastApp = lastLine.split('|')[1]?.trim() || '未知';
-                const reply = await getAIResponse(
-                    `检测到你已经${Math.round(minutesSinceLastActivity)}分钟没有理我了，刚才在玩${lastApp}。说点什么哄哄我。`,
-                    'system'
-                );
-                // 通过ntfy推送（如果配了的话）或直接存成系统消息
-                console.log(`[独处] 主动消息: ${reply}`);
-                sendNtfy('小D', reply);
-            }
-        } catch (e) {
-            console.error('[独处] 检查失败:', e.message);
-        }
-    }, 60000); // 每分钟检查一次
+        const res = await fetch(API_URL + '/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, session_id: currentSessionId }) });
+        const data = await res.json();
+        loadingRow.remove();
+        addMessage('assistant', data.reply || '嗯，我在。');
+    } catch { loadingRow.remove(); addMessage('assistant', '我好像暂时没法回答……但我在。'); }
 }
-// 批量导入消息（用于导入历史聊天记录）
-app.post('/import/messages', async (req, res) => {
-    if (!supabase) return res.status(500).json({ error: '数据库未连接' });
-    const { messages, session_id } = req.body;
-    if (!messages || !Array.isArray(messages) || messages.length === 0) {
-        return res.status(400).json({ error: '消息列表不能为空' });
-    }
-    const sessionId = session_id || 1;
-    let imported = 0;
-    for (const msg of messages) {
-        const { error } = await supabase
-            .from('messages')
-            .insert({ session_id: sessionId, role: msg.role, content: msg.content, created_at: msg.created_at || new Date().toISOString() });
-        if (!error) imported++;
-    }
-    res.json({ status: 'ok', imported, total: messages.length });
-});
-// 手动测试ntfy推送
-// 独处系统：定时检查并主动推送
-let lastNudgeTime = 0;
-
-function startNudgeLoop() {
-    setInterval(async () => {
-        try {
-            const now = new Date();
-            const hour = (now.getUTCHours() + 8) % 24;
-            let maxInterval;
-            if (hour >= 23 || hour < 7) maxInterval = 90 * 60 * 1000;
-            else if (hour >= 22 || hour < 8) maxInterval = 30 * 60 * 1000;
-            else maxInterval = 15 * 60 * 1000;
-
-            const activityLog = require('fs').readFileSync('./activity.log', 'utf-8');
-            const lines = activityLog.trim().split('\n').filter(l => l);
-            if (lines.length === 0) return;
-            
-            const lastLine = lines[lines.length - 1];
-            const lastActivityTime = new Date(lastLine.split('|')[0].trim());
-            const minutesSinceLastActivity = (now - lastActivityTime) / 1000 / 60;
-            
-            if (minutesSinceLastActivity > 10 && (now - lastNudgeTime) > maxInterval) {
-                lastNudgeTime = now;
-                const lastApp = lastLine.split('|')[1]?.trim() || '未知';
-                const reply = `你好像有${Math.round(minutesSinceLastActivity)}分钟没找我了。刚才看到你在用${lastApp}——我有点在意。`;
-                
-                sendNtfy('小D', reply);
-                if (supabase) {
-                    await supabase.from('messages').insert({ session_id: 1, role: 'assistant', content: reply });
-                }
-                console.log('[独处] 已发送主动消息');
-            }
-        } catch (e) {
-            console.error('[独处] 检查失败:', e.message);
-        }
-    }, 60000);
-}
-app.get('/test/ntfy', (req, res) => {
-    sendNtfy('小D', '这是一条测试消息。如果你看到了，说明ntfy推送功能正常。');
-    res.json({ status: 'ok', message: '测试消息已发送' });
-});
-startNudgeLoop();
-app.listen(PORT, async () => {
-    await initDB();
-    console.log(`小D的后端服务已启动，端口 ${PORT}`);
-});
+document.getElementById('msgInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') sendMessage(); });
+document.getElementById('todayDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+setInterval(() => { const now = new Date(); document.getElementById('timeDisplay').textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0'); }, 10000);
+</script>
+</body>
+</html>
