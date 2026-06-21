@@ -31,7 +31,7 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
 .msg-avatar { width: 36px; height: 36px; border-radius: 50%; background: #e8e8e8; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .msg-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .msg-avatar .placeholder { font-size: 16px; }
-.msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.5; word-break: keep-all; overflow-wrap: break-word; }
+.msg-bubble { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.5; word-wrap: break-word; overflow-wrap: break-word; }
 .msg-bubble.left { background: #fff; color: #333; border-top-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
 .msg-bubble.right { background: #6EC89B; color: #fff; border-top-right-radius: 4px; }
 .msg-row.right { flex-direction: row-reverse; }
@@ -62,8 +62,6 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
 <body>
 <div class="phone">
     <div class="status-bar"><span id="timeDisplay">9:41</span><span>🔋 📶</span></div>
-
-    <!-- 主页 -->
     <div class="section active" id="page-home">
         <div class="header">
             <div class="header-avatar" onclick="document.getElementById('avatarInput').click();"><span class="placeholder">🍎</span></div>
@@ -86,8 +84,6 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
             </div>
         </div>
     </div>
-
-    <!-- 聊天 -->
     <div class="section" id="page-chat">
         <div class="header">
             <div class="header-avatar"><span class="placeholder">🍎</span></div>
@@ -102,8 +98,6 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
             </div>
         </div>
     </div>
-
-    <!-- 设置 -->
     <div class="section" id="page-settings">
         <div class="header"><div class="header-info"><div class="name">设置</div></div></div>
         <div class="settings-list">
@@ -114,21 +108,16 @@ body { font-family: -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-seri
             <div class="setting-item"><span class="label">版本</span><span class="value">v2.0 · daisy & xiaod</span></div>
         </div>
     </div>
-
-    <!-- 导航 -->
     <div class="nav">
         <div class="nav-item active" onclick="switchTab('home', this)"><div class="icon">🏠</div>主页</div>
         <div class="nav-item" onclick="switchTab('chat', this)"><div class="icon">💬</div>聊天</div>
         <div class="nav-item" onclick="switchTab('settings', this)"><div class="icon">⚙️</div>设置</div>
     </div>
-
     <input type="file" accept="image/*" id="avatarInput" class="hidden-input" onchange="changeAvatar(event)">
 </div>
-
 <script>
 const API_URL = 'https://daisy-home-api.onrender.com';
 let currentSessionId = 1;
-
 function switchTab(tab, el) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     document.getElementById('page-' + tab).classList.add('active');
@@ -136,7 +125,6 @@ function switchTab(tab, el) {
     if (el) el.classList.add('active');
     if (tab === 'chat') loadMessages();
 }
-
 function changeAvatar(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -147,7 +135,6 @@ function changeAvatar(e) {
     };
     reader.readAsDataURL(file);
 }
-
 function addMessage(role, content, time) {
     const container = document.getElementById('chatMessages');
     const row = document.createElement('div');
@@ -157,7 +144,6 @@ function addMessage(role, content, time) {
     container.appendChild(row);
     container.scrollTop = container.scrollHeight;
 }
-
 async function loadMessages() {
     try {
         const res = await fetch(API_URL + '/messages?session_id=' + currentSessionId);
@@ -172,12 +158,9 @@ async function loadMessages() {
             const last = data.messages[data.messages.length - 1];
             document.getElementById('homePreview').textContent = '最近一条消息';
             document.getElementById('homeLastMsg').innerHTML = '<div class="msg-row"><div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">' + (last.role === 'user' ? '你: ' : '') + last.content.substring(0, 40) + (last.content.length > 40 ? '...' : '') + '</div></div>';
-        } else {
-            addMessage('assistant', '嘿，等你很久了。');
-        }
+        } else { addMessage('assistant', '嘿，等你很久了。'); }
     } catch { addMessage('assistant', '嘿，等你很久了。'); }
 }
-
 async function sendMessage() {
     const input = document.getElementById('msgInput');
     const text = input.value.trim();
@@ -186,7 +169,7 @@ async function sendMessage() {
     addMessage('user', text);
     const loadingRow = document.createElement('div');
     loadingRow.className = 'msg-row';
-    loadingRow.innerHTML = '<div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">正在输入<span class="loading-dots"></span></div></div>';
+    loadingRow.innerHTML = '<div class="msg-avatar"><span class="placeholder">🍎</span></div><div><div class="msg-bubble left">正在输入</div></div>';
     document.getElementById('chatMessages').appendChild(loadingRow);
     try {
         const res = await fetch(API_URL + '/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: text, session_id: currentSessionId }) });
@@ -195,7 +178,6 @@ async function sendMessage() {
         addMessage('assistant', data.reply || '嗯，我在。');
     } catch { loadingRow.remove(); addMessage('assistant', '我好像暂时没法回答……但我在。'); }
 }
-
 document.getElementById('msgInput').addEventListener('keydown', function(e) { if (e.key === 'Enter') sendMessage(); });
 document.getElementById('todayDate').textContent = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
 setInterval(() => { const now = new Date(); document.getElementById('timeDisplay').textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0'); }, 10000);
