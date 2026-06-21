@@ -213,6 +213,11 @@ app.post('/import/messages', async (req, res) => {
     }
     res.json({ status: 'ok', imported, total: messages.length });
 });
+// 手动测试ntfy推送
+app.get('/test/ntfy', (req, res) => {
+    sendNtfy('小D', '这是一条测试消息。如果你看到了，说明ntfy推送功能正常。');
+    res.json({ status: 'ok', message: '测试消息已发送' });
+});
 app.listen(PORT, async () => {
     await initDB();
     console.log(`小D的后端服务已启动，端口 ${PORT}`);
