@@ -166,7 +166,6 @@ app.post('/chat', async (req, res) => {
 });
 // 独处系统：定时检查手机活动，决定是否主动发消息
 const NUDGE_INTERVAL = 15 * 60 * 1000; // 15分钟
-let lastNudgeTime = 0;
 
 function startNudgeLoop() {
     setInterval(async () => {
