@@ -57,7 +57,6 @@ async function callAI(messages, model = 'deepseek-chat') {
 
   if (model === 'claude-3.5-sonnet' || model === 'claude-3-5-sonnet') {
     if (!ANTHROPIC_API_KEY) throw new Error('Anthropic API key not configured. Set ANTHROPIC_API_KEY env var.');
-    // Convert messages format for Anthropic
     const systemMsg = messages.find(m => m.role === 'system');
     const chatMsgs = messages.filter(m => m.role !== 'system');
     const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -84,7 +83,6 @@ app.get('/api/health', (_req, res) => res.json({ ok: true }));
 // ── Bucket Setup ─────────────────────────────────────────────────────────────
 async function ensureBuckets() {
   try {
-    // Check / create 'avatars' bucket
     const { data: buckets } = await supabase.storage.listBuckets();
     const bucketNames = (buckets || []).map(b => b.name);
     if (!bucketNames.includes('avatars')) {
@@ -104,10 +102,9 @@ async function ensureBuckets() {
 
 // ── Database Setup ───────────────────────────────────────────────────────────
 async function ensureTables() {
-  // Try creating each table individually via REST
   const tables = [
     { name: 'sessions', sql: `CREATE TABLE IF NOT EXISTS sessions (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), name TEXT NOT NULL DEFAULT '新对话', created_at TIMESTAMPTZ DEFAULT now(), updated_at TIMESTAMPTZ DEFAULT now(), last_message TEXT DEFAULT '')` },
-    { name: 'messages', sql: `CREATE TABLE IF NOT EXISTS messages (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), session_id UUID REFERENCES sessions(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK (role IN ('user','assistant','system')), content TEXT NOT NULL DEFAULT '', version INTEGER DEFAULT 1, version_group UUID, version_history JSONB DEFAULT '[]', read BOOLEAN DEFAULT false, created_at TIMESTAMPTZ DEFAULT now())` },
+    { name: 'messages', sql: `CREATE TABLE IF NOT EXISTS messages (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), session_id UUID REFERENCES sessions(id) ON DELETE CASCADE, role TEXT NOT NULL CHECK (role IN ('user','assistant','system')), content TEXT NOT NULL DEFAULT '', image_url TEXT, version INTEGER DEFAULT 1, version_group UUID, version_history JSONB DEFAULT '[]', read BOOLEAN DEFAULT false, created_at TIMESTAMPTZ DEFAULT now())` },
     { name: 'reactions', sql: `CREATE TABLE IF NOT EXISTS reactions (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), message_id UUID REFERENCES messages(id) ON DELETE CASCADE, emoji TEXT NOT NULL, count INTEGER DEFAULT 1)` },
     { name: 'events', sql: `CREATE TABLE IF NOT EXISTS events (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), title TEXT NOT NULL, type TEXT DEFAULT 'reminder', event_date DATE NOT NULL, created_at TIMESTAMPTZ DEFAULT now())` },
     { name: 'diary', sql: `CREATE TABLE IF NOT EXISTS diary (id UUID PRIMARY KEY DEFAULT gen_random_uuid(), content TEXT NOT NULL DEFAULT '', mood TEXT DEFAULT '', author TEXT DEFAULT 'user', diary_date DATE DEFAULT CURRENT_DATE, created_at TIMESTAMPTZ DEFAULT now())` },
@@ -119,7 +116,6 @@ async function ensureTables() {
     try {
       const { error } = await supabase.from(table.name).select('id').limit(1);
       if (error && error.code === '42P01') {
-        // Table doesn't exist, try to create via raw SQL if exec_sql RPC exists
         console.log(`Table ${table.name} missing - attempting create via RPC...`);
         try {
           const { error: rpcErr } = await supabase.rpc('exec_sql', { query: table.sql });
@@ -208,6 +204,7 @@ app.get('/api/sessions/:id/messages', async (req, res) => {
       .eq('session_id', req.params.id)
       .order('created_at', { ascending: true });
     if (error) throw error;
+    // Filter to only show current versions
     res.json(data || []);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -247,7 +244,6 @@ app.post('/api/messages/:id/regenerate', async (req, res) => {
     if (msgErr || !msg) return res.status(404).json({ error: 'Message not found' });
     if (msg.role !== 'assistant') return res.status(400).json({ error: 'Can only regenerate assistant messages' });
 
-    // Get messages before this one for context (only latest version of each)
     const { data: history } = await supabase.from('messages')
       .select('*')
       .eq('session_id', msg.session_id)
@@ -257,7 +253,6 @@ app.post('/api/messages/:id/regenerate', async (req, res) => {
     const chatHistory = (history || []).map(m => ({ role: m.role, content: m.content }));
     const newContent = await callAI(chatHistory, model || 'deepseek-chat');
 
-    // Store current version in version_history before overwriting
     const versionHistory = Array.isArray(msg.version_history) ? msg.version_history : [];
     versionHistory.push({ version: msg.version || 1, content: msg.content, created_at: msg.created_at });
 
@@ -277,7 +272,7 @@ app.post('/api/messages/:id/regenerate', async (req, res) => {
   }
 });
 
-// POST /api/messages/:id/switch-version - switch to a specific historical version
+// POST /api/messages/:id/switch-version
 app.post('/api/messages/:id/switch-version', async (req, res) => {
   try {
     if (!isValidUUID(req.params.id)) return res.status(400).json({ error: 'Invalid message ID' });
@@ -291,7 +286,6 @@ app.post('/api/messages/:id/switch-version', async (req, res) => {
     const target = versionHistory.find(v => v.version === targetVersion);
     if (!target) return res.status(404).json({ error: 'Version not found' });
 
-    // Swap: current becomes history entry, target becomes current
     const newHistory = versionHistory.filter(v => v.version !== targetVersion);
     newHistory.push({ version: msg.version, content: msg.content, created_at: msg.created_at });
 
@@ -308,7 +302,7 @@ app.post('/api/messages/:id/switch-version', async (req, res) => {
   }
 });
 
-// GET /api/messages/:id/versions - get all versions of a message
+// GET /api/messages/:id/versions
 app.get('/api/messages/:id/versions', async (req, res) => {
   try {
     if (!isValidUUID(req.params.id)) return res.status(400).json({ error: 'Invalid message ID' });
@@ -316,7 +310,6 @@ app.get('/api/messages/:id/versions', async (req, res) => {
     if (error || !msg) return res.status(404).json({ error: 'Message not found' });
 
     const versions = Array.isArray(msg.version_history) ? msg.version_history : [];
-    // Include current version
     versions.push({ version: msg.version, content: msg.content, created_at: msg.created_at, current: true });
     versions.sort((a, b) => b.version - a.version);
     res.json(versions);
@@ -328,24 +321,24 @@ app.get('/api/messages/:id/versions', async (req, res) => {
 // POST /api/chat - send user message and get AI reply
 app.post('/api/chat', async (req, res) => {
   try {
-    const { sessionId, message, model } = req.body;
+    const { sessionId, message, model, imageData } = req.body;
     if (!sessionId || !message) return res.status(400).json({ error: 'sessionId and message are required' });
     if (!isValidUUID(sessionId)) return res.status(400).json({ error: 'Invalid session ID' });
 
     const usedModel = model || 'deepseek-chat';
 
-    // 1. Save user message
+    // Save user message
     const { data: userMsg, error: userErr } = await supabase.from('messages').insert({
-      session_id: sessionId, role: 'user', content: message, version: 1, read: true,
+      session_id: sessionId, role: 'user', content: message, image_url: imageData || null, version: 1, read: true,
     }).select().single();
     if (userErr) throw userErr;
 
-    // 2. Get chat history for context
+    // Get chat history for context
     const { data: history } = await supabase.from('messages')
       .select('*').eq('session_id', sessionId).order('created_at', { ascending: true });
     const chatHistory = (history || []).map(m => ({ role: m.role, content: m.content }));
 
-    // 3. Call appropriate AI
+    // Call AI
     let aiContent;
     try {
       aiContent = await callAI(chatHistory, usedModel);
@@ -353,19 +346,97 @@ app.post('/api/chat', async (req, res) => {
       aiContent = `抱歉，AI 服务暂时不可用：${aiErr.message}`;
     }
 
-    // 4. Save AI response
+    // Save AI response
     const { data: aiMsg, error: aiErr } = await supabase.from('messages').insert({
       session_id: sessionId, role: 'assistant', content: aiContent, version: 1, read: false,
       version_history: [],
     }).select().single();
     if (aiErr) throw aiErr;
 
-    // 5. Update session
+    // Update session
     await supabase.from('sessions').update({
       updated_at: new Date().toISOString(), last_message: aiContent.substring(0, 200),
     }).eq('id', sessionId);
 
     res.status(201).json({ userMessage: userMsg, aiMessage: aiMsg });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SEARCH (NEW - keyword, date, image, file type filtering)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+app.get('/api/search', async (req, res) => {
+  try {
+    const { session_id, q, type, date_from, date_to } = req.query;
+    let query = supabase.from('messages').select('*');
+
+    if (session_id && isValidUUID(session_id)) {
+      query = query.eq('session_id', session_id);
+    }
+
+    // Keyword search
+    if (q && q.trim()) {
+      query = query.ilike('content', `%${q.trim()}%`);
+    }
+
+    // Type filter: image messages only
+    if (type === 'image') {
+      query = query.not('image_url', 'is', null);
+    }
+
+    // Type filter: messages with files (check for file-related content)
+    if (type === 'file') {
+      query = query.or('content.ilike.%.pdf%,content.ilike.%.doc%,content.ilike.%.txt%,content.ilike.%.文件%');
+    }
+
+    // Date range
+    if (date_from) {
+      const from = date_from.includes('T') ? date_from : `${date_from}T00:00:00Z`;
+      query = query.gte('created_at', from);
+    }
+    if (date_to) {
+      const to = date_to.includes('T') ? date_to : `${date_to}T23:59:59Z`;
+      query = query.lte('created_at', to);
+    }
+
+    query = query.order('created_at', { ascending: false }).limit(100);
+    const { data, error } = await query;
+    if (error) throw error;
+    res.json(data || []);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Global search across all sessions
+app.get('/api/search/all', async (req, res) => {
+  try {
+    const { q, type, date_from, date_to } = req.query;
+    let query = supabase.from('messages').select('*, sessions!inner(name)');
+
+    if (q && q.trim()) {
+      query = query.ilike('content', `%${q.trim()}%`);
+    }
+    if (type === 'image') {
+      query = query.not('image_url', 'is', null);
+    }
+    if (type === 'file') {
+      query = query.or('content.ilike.%.pdf%,content.ilike.%.doc%,content.ilike.%.txt%,content.ilike.%.文件%');
+    }
+    if (date_from) {
+      query = query.gte('created_at', date_from.includes('T') ? date_from : `${date_from}T00:00:00Z`);
+    }
+    if (date_to) {
+      query = query.lte('created_at', date_to.includes('T') ? date_to : `${date_to}T23:59:59Z`);
+    }
+
+    query = query.order('created_at', { ascending: false }).limit(100);
+    const { data, error } = await query;
+    if (error) throw error;
+    res.json(data || []);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -431,6 +502,17 @@ app.post('/api/events', async (req, res) => {
     const { data, error } = await supabase.from('events').insert({ title, type: type || 'reminder', event_date }).select().single();
     if (error) throw error;
     res.status(201).json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.delete('/api/events/:id', async (req, res) => {
+  try {
+    if (!isValidUUID(req.params.id)) return res.status(400).json({ error: 'Invalid event ID' });
+    const { error } = await supabase.from('events').delete().eq('id', req.params.id);
+    if (error) throw error;
+    res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -537,12 +619,12 @@ app.put('/api/settings', async (req, res) => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// UPLOAD (Avatar to Supabase Storage)
+// UPLOAD (Avatar to Supabase Storage - supports user & AI avatars)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 app.post('/api/upload', async (req, res) => {
   try {
-    const { image, filename, bucket } = req.body;
+    const { image, filename, bucket, avatarType } = req.body;
     if (!image) return res.status(400).json({ error: 'image is required' });
 
     const matches = image.match(/^data:image\/(\w+);base64,(.+)$/);
@@ -551,16 +633,17 @@ app.post('/api/upload', async (req, res) => {
     else { buffer = Buffer.from(image, 'base64'); ext = 'png'; }
 
     const targetBucket = bucket || 'avatars';
-    const filePath = `${filename || `avatar-${Date.now()}.${ext}`}`;
+    // Use avatar type prefix for user/AI distinction
+    const prefix = avatarType === 'user' ? 'user-' : avatarType === 'ai' ? 'ai-' : 'avatar-';
+    const filePath = `${prefix}${filename || `img-${Date.now()}.${ext}`}`;
 
-    // Try preferred bucket first, fall back to public
     let uploadErr;
     for (const b of [targetBucket, 'public']) {
       try {
         const { data, error } = await supabase.storage.from(b).upload(filePath, buffer, { contentType: `image/${ext}`, upsert: true });
         if (!error) {
           const { data: urlData } = supabase.storage.from(b).getPublicUrl(filePath);
-          return res.json({ url: urlData.publicUrl, path: filePath, bucket: b });
+          return res.json({ url: urlData.publicUrl, path: filePath, bucket: b, avatarType: avatarType || 'user' });
         }
         uploadErr = error;
       } catch (e) { uploadErr = e; }
@@ -568,6 +651,95 @@ app.post('/api/upload', async (req, res) => {
     throw uploadErr || new Error('Upload failed in all buckets');
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AI VISION - analyze uploaded image
+// ═══════════════════════════════════════════════════════════════════════════════
+
+app.post('/api/vision', async (req, res) => {
+  try {
+    const { imageBase64 } = req.body;
+    if (!imageBase64) return res.status(400).json({ error: 'imageBase64 required' });
+
+    if (!OPENAI_API_KEY && !DEEPSEEK_API_KEY) {
+      return res.status(500).json({ error: 'No vision-capable AI key configured' });
+    }
+
+    // Try OpenAI first for vision
+    if (OPENAI_API_KEY) {
+      const res2 = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${OPENAI_API_KEY}` },
+        body: JSON.stringify({
+          model: 'gpt-4o',
+          messages: [{
+            role: 'user',
+            content: [
+              { type: 'image_url', image_url: { url: imageBase64 } },
+              { type: 'text', text: '请详细描述这张图片的内容。如果是文档或截图，请识别其中的文字信息。用中文回复。' },
+            ],
+          }],
+          max_tokens: 1024,
+        }),
+      });
+      if (res2.ok) {
+        const data = await res2.json();
+        return res.json({ description: data.choices[0].message.content });
+      }
+    }
+
+    // Fallback to DeepSeek
+    if (DEEPSEEK_API_KEY) {
+      const res2 = await fetch('https://api.deepseek.com/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${DEEPSEEK_API_KEY}` },
+        body: JSON.stringify({
+          model: 'deepseek-chat',
+          messages: [{ role: 'user', content: '请描述这张图片。如果图片不能识别，请说明。' }],
+          max_tokens: 512,
+        }),
+      });
+      if (res2.ok) {
+        const data = await res2.json();
+        return res.json({ description: '来自输入的内容：用户上传了一张图片。' + data.choices[0].message.content });
+      }
+    }
+
+    res.json({ description: '图片已上传。AI暂时无法识别图片内容。' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AI IMAGE GENERATION (DALL-E)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+app.post('/api/generate-image', async (req, res) => {
+  try {
+    const { prompt } = req.body;
+    if (!prompt) return res.status(400).json({ error: 'prompt is required' });
+
+    const dalleKey = OPENAI_API_KEY || process.env.DALLE_API_KEY;
+    if (!dalleKey) return res.status(500).json({ error: 'OpenAI API key not configured for DALL-E. Set OPENAI_API_KEY env var.' });
+
+    const res2 = await fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${dalleKey}` },
+      body: JSON.stringify({
+        model: 'dall-e-3',
+        prompt: prompt + ', warm and gentle aesthetic, suitable for a couple app, artistic',
+        n: 1,
+        size: '1024x1024',
+      }),
+    });
+    if (!res2.ok) { const err = await res2.text(); throw new Error(`DALL-E error: ${err}`); }
+    const data = await res2.json();
+    res.json({ url: data.data[0]?.url, revised_prompt: data.data[0]?.revised_prompt });
+  } catch (err) {
+    res.status(500).json({ error: err.message, fallback: true });
   }
 });
 
@@ -614,7 +786,6 @@ app.post('/api/messages/mark-read', async (req, res) => {
 
 app.delete('/api/clear-all', async (_req, res) => {
   try {
-    // Delete in correct FK order
     await supabase.from('reactions').delete().filter('id', 'not.is', null);
     await supabase.from('messages').delete().filter('id', 'not.is', null);
     await supabase.from('sessions').delete().filter('id', 'not.is', null);
