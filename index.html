@@ -539,7 +539,7 @@ function navigateTo(page) {
 
 // ── API HELPER ───────────────────────────────────────────────────────────────
 async function api(path, options = {}) {
-  const url = `${API_BASE}${path}`;
+  const url = `${API_BASE}/api${path}`;
   const config = { headers: { 'Content-Type': 'application/json' }, ...options };
   if (config.body && typeof config.body === 'object') config.body = JSON.stringify(config.body);
   try {
