@@ -8,152 +8,109 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script>
 tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "on-tertiary-container":"#793032","surface-container-highest":"#dfe4de","background":"#f6fbf5",
-        "surface-variant":"#dfe4de","secondary-fixed":"#d7e3f9","primary-fixed-dim":"#7ed8aa",
-        "on-tertiary-fixed-variant":"#782f31","inverse-primary":"#7ed8aa","on-secondary-fixed-variant":"#3c4759",
-        "error":"#ba1a1a","tertiary-container":"#ff9b9a","inverse-surface":"#2d322e",
-        "on-primary-fixed-variant":"#005235","on-tertiary":"#ffffff","tertiary-fixed-dim":"#ffb3b1",
-        "on-secondary-fixed":"#101c2c","surface":"#f6fbf5","surface-dim":"#d7dbd6","on-surface":"#181d19",
-        "on-error":"#ffffff","on-primary-container":"#005336","on-error-container":"#93000a",
-        "outline-variant":"#bec9c0","secondary":"#535f71","surface-container-low":"#f0f5ef",
-        "tertiary-fixed":"#ffdad8","on-secondary-container":"#576376","on-secondary":"#ffffff",
-        "outline":"#6f7a72","on-tertiary-fixed":"#3e0409","error-container":"#ffdad6",
-        "on-surface-variant":"#3f4942","on-background":"#181d19","on-primary":"#ffffff",
-        "primary-fixed":"#9af5c5","secondary-container":"#d4e0f6","surface-tint":"#006c48",
-        "surface-bright":"#f6fbf5","inverse-on-surface":"#eef2ec","surface-container-lowest":"#ffffff",
-        "primary":"#006c48","primary-container":"#6ec89b","secondary-fixed-dim":"#bbc7dd",
-        "tertiary":"#954647","surface-container-high":"#e5e9e4","surface-container":"#ebefe9",
-        "on-primary-fixed":"#002113"
-      },
-      borderRadius: { DEFAULT:"0.25rem", lg:"0.5rem", xl:"0.75rem", "2xl":"1.25rem", full:"9999px" },
-      spacing: { "avatar-lg":"48px", unit:"4px", "avatar-sm":"36px", "gutter-chat":"12px", "margin-page":"16px", "nav-height":"84px" },
-      fontFamily: {
-        "headline-md":["Plus Jakarta Sans"],"body-md":["Be Vietnam Pro"],"display-lg":["Plus Jakarta Sans"],
-        "label-md":["Be Vietnam Pro"],"chat-bubble":["Be Vietnam Pro"],"body-lg":["Be Vietnam Pro"]
-      },
-      fontSize: {
-        "headline-md":["20px",{lineHeight:"28px",fontWeight:"600"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],
-        "display-lg":["30px",{lineHeight:"38px",letterSpacing:"-0.02em",fontWeight:"700"}],
-        "label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"chat-bubble":["16px",{lineHeight:"22px",fontWeight:"400"}],
-        "body-lg":["17px",{lineHeight:"24px",fontWeight:"400"}]
-      }
-    }
-  }
+  darkMode: "class", theme: { extend: {
+    colors: {
+      "on-tertiary-container":"#793032","surface-container-highest":"#dfe4de","background":"#f6fbf5",
+      "surface-variant":"#dfe4de","secondary-fixed":"#d7e3f9","primary-fixed-dim":"#7ed8aa",
+      "on-tertiary-fixed-variant":"#782f31","inverse-primary":"#7ed8aa","on-secondary-fixed-variant":"#3c4759",
+      "error":"#ba1a1a","tertiary-container":"#ff9b9a","inverse-surface":"#2d322e",
+      "on-primary-fixed-variant":"#005235","on-tertiary":"#ffffff","tertiary-fixed-dim":"#ffb3b1",
+      "on-secondary-fixed":"#101c2c","surface":"#f6fbf5","surface-dim":"#d7dbd6","on-surface":"#181d19",
+      "on-error":"#ffffff","on-primary-container":"#005336","on-error-container":"#93000a",
+      "outline-variant":"#bec9c0","secondary":"#535f71","surface-container-low":"#f0f5ef",
+      "tertiary-fixed":"#ffdad8","on-secondary-container":"#576376","on-secondary":"#ffffff",
+      "outline":"#6f7a72","on-tertiary-fixed":"#3e0409","error-container":"#ffdad6",
+      "on-surface-variant":"#3f4942","on-background":"#181d19","on-primary":"#ffffff",
+      "primary-fixed":"#9af5c5","secondary-container":"#d4e0f6","surface-tint":"#006c48",
+      "surface-bright":"#f6fbf5","inverse-on-surface":"#eef2ec","surface-container-lowest":"#ffffff",
+      "primary":"#006c48","primary-container":"#6ec89b","secondary-fixed-dim":"#bbc7dd",
+      "tertiary":"#954647","surface-container-high":"#e5e9e4","surface-container":"#ebefe9",
+      "on-primary-fixed":"#002113"
+    },
+    borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem","2xl":"1.25rem",full:"9999px"},
+    spacing:{"avatar-lg":"48px",unit:"4px","avatar-sm":"36px","gutter-chat":"12px","margin-page":"16px","nav-height":"84px"},
+    fontFamily:{"headline-md":["Plus Jakarta Sans"],"body-md":["Be Vietnam Pro"],"display-lg":["Plus Jakarta Sans"],"label-md":["Be Vietnam Pro"],"chat-bubble":["Be Vietnam Pro"],"body-lg":["Be Vietnam Pro"]},
+    fontSize:{"headline-md":["20px",{lineHeight:"28px",fontWeight:"600"}],"body-md":["15px",{lineHeight:"22px",fontWeight:"400"}],"display-lg":["30px",{lineHeight:"38px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}],"chat-bubble":["16px",{lineHeight:"22px",fontWeight:"400"}],"body-lg":["17px",{lineHeight:"24px",fontWeight:"400"}]}
+  }}
 }
 </script>
 <style>
-  .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; font-size:24px; }
-  body { background-color:#f6fbf5; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
-  .tonal-elevation-1 { background:#ffffff; border:1px solid #EDEDED; box-shadow:0 4px 12px rgba(0,0,0,0.04); }
-  .calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); }
-  .custom-scrollbar::-webkit-scrollbar { width:4px; }
-  .custom-scrollbar::-webkit-scrollbar-track { background:transparent; }
-  .custom-scrollbar::-webkit-scrollbar-thumb { background:#E5E9E4; border-radius:10px; }
-  .no-scrollbar::-webkit-scrollbar { display:none; }
-  .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
-  .glass-header { backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
-  @keyframes messageIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-  .animate-message { animation:messageIn 0.3s ease-out forwards; }
-  .ios-toggle { appearance:none; width:51px; height:31px; background:#E9E9EA; border-radius:31px; position:relative; cursor:pointer; transition:background 0.3s; flex-shrink:0; }
-  .ios-toggle:checked { background:#6EC89B; }
-  .ios-toggle::before { content:''; position:absolute; width:27px; height:27px; border-radius:50%; background:white; top:2px; left:2px; transition:transform 0.3s cubic-bezier(0.4,0,0.2,1); box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-  .ios-toggle:checked::before { transform:translateX(20px); }
-  .page-section { display:none; }
-  .page-section.active { display:block; }
-  .context-menu { position:fixed; z-index:70; background:white; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.18); min-width:180px; overflow:hidden; display:none; }
-  .context-menu.show { display:block; }
-  .context-menu button { display:flex; align-items:center; gap:12px; width:100%; padding:14px 18px; text-align:left; font-size:15px; transition:background 0.15s; }
-  .context-menu button:active { background:#f0f5ef; }
-  .dark body, .dark { background-color:#1a1f1b !important; }
-  .dark .tonal-elevation-1 { background:#232825; border-color:#333; }
-  .dark .bg-white { background:#232825 !important; }
-  .dark .text-on-surface { color:#eef2ec !important; }
-  .dark .text-secondary { color:#b0b8b1 !important; }
-  .dark .bg-surface { background:#1a1f1b !important; }
-  .dark .bg-surface-container-lowest { background:#1a1f1b !important; }
-  .dark .bg-surface-container-low { background:#1e231f !important; }
-  .dark .bg-surface-container-high { background:#2a2f2b !important; }
-  .dark .border-outline-variant\/10, .dark .border-outline-variant\/20, .dark .border-outline-variant\/30 { border-color:rgba(255,255,255,0.08) !important; }
-  .dark .context-menu { background:#2a2f2b; color:#eef2ec; }
-  .dark .context-menu button:active { background:#3a3f3b; }
-  #quote-bar { display:none; }
-  #quote-bar.show { display:flex; }
-  .emoji-picker { position:fixed; bottom:80px; left:50%; transform:translateX(-50%); z-index:80; background:white; border-radius:20px; box-shadow:0 8px 32px rgba(0,0,0,0.18); padding:12px; display:none; grid-template-columns:repeat(8,1fr); gap:6px; max-width:360px; }
-  .emoji-picker.show { display:grid; }
-  .dark .emoji-picker { background:#2a2f2b; }
-  .font-size-xlarge .chat-bubble { font-size:18px !important; line-height:26px !important; }
-  .font-size-large .chat-bubble { font-size:17px !important; line-height:24px !important; }
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;font-size:24px}
+  body{background-color:#f6fbf5;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+  .tonal-elevation-1{background:#fff;border:1px solid #EDEDED;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+  .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+  .custom-scrollbar::-webkit-scrollbar{width:4px}
+  .custom-scrollbar::-webkit-scrollbar-track{background:transparent}
+  .custom-scrollbar::-webkit-scrollbar-thumb{background:#E5E9E4;border-radius:10px}
+  .no-scrollbar::-webkit-scrollbar{display:none}
+  .no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+  .glass-header{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  @keyframes messageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .animate-message{animation:messageIn .3s ease-out forwards}
+  .ios-toggle{appearance:none;width:51px;height:31px;background:#E9E9EA;border-radius:31px;position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+  .ios-toggle:checked{background:#6EC89B}
+  .ios-toggle::before{content:'';position:absolute;width:27px;height:27px;border-radius:50%;background:#fff;top:2px;left:2px;transition:transform .3s cubic-bezier(.4,0,.2,1);box-shadow:0 2px 4px rgba(0,0,0,.1)}
+  .ios-toggle:checked::before{transform:translateX(20px)}
+  .page-section{display:none}
+  .page-section.active{display:block}
+  .context-menu{position:fixed;z-index:70;background:#fff;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:190px;overflow:hidden;display:none}
+  .context-menu.show{display:block}
+  .context-menu button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 18px;text-align:left;font-size:15px;transition:background .15s;border:none;background:none;cursor:pointer}
+  .context-menu button:active{background:#f0f5ef}
+  .dark body,.dark{background-color:#1a1f1b!important}
+  .dark .tonal-elevation-1{background:#232825;border-color:#333}
+  .dark .bg-white{background:#232825!important}
+  .dark .text-on-surface{color:#eef2ec!important}
+  .dark .text-secondary{color:#b0b8b1!important}
+  .dark .bg-surface{background:#1a1f1b!important}
+  .dark .bg-surface-container-lowest{background:#1a1f1b!important}
+  .dark .bg-surface-container-low{background:#1e231f!important}
+  .dark .bg-surface-container-high{background:#2a2f2b!important}
+  .dark .border-outline-variant\/10,.dark .border-outline-variant\/20,.dark .border-outline-variant\/30{border-color:rgba(255,255,255,.08)!important}
+  .dark .context-menu{background:#2a2f2b;color:#eef2ec}
+  .dark .context-menu button:active{background:#3a3f3b}
+  #quote-bar{display:none}
+  #quote-bar.show{display:flex}
+  .emoji-picker{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:80;background:#fff;border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.18);padding:12px;display:none;grid-template-columns:repeat(8,1fr);gap:6px;max-width:360px}
+  .emoji-picker.show{display:grid}
+  .dark .emoji-picker{background:#2a2f2b}
+  .font-size-large .chat-bubble{font-size:17px!important;line-height:24px!important}
+  .font-size-xlarge .chat-bubble{font-size:18px!important;line-height:26px!important}
+  .reaction-badge{display:inline-flex;align-items:center;gap:3px;background:#f0f5ef;border-radius:12px;padding:2px 8px;font-size:12px;cursor:pointer;transition:background .15s}
+  .reaction-badge:hover{background:#e0e8e0}
+  .dark .reaction-badge{background:#2a2f2b}
+  .dark .reaction-badge:hover{background:#3a3f3b}
+  .version-selector{position:fixed;inset:0;z-index:75;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center}
+  .version-selector.show{display:flex}
 </style>
 </head>
 <body class="font-body-md text-on-surface">
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- PAGE: HOME -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ PAGE: HOME ═════ -->
 <section class="page-section active" id="page-home">
   <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md sticky top-0 z-40 w-full flex justify-between items-center px-margin-page h-[72px]">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container cursor-pointer" id="avatar-home" onclick="triggerAvatarUpload()">
+      <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container cursor-pointer" onclick="triggerAvatarUpload()">
         <img class="w-full h-full object-cover" id="avatar-img-home" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-LmnU4xo-wa8lH8QMTbsuL5IOOtnB7qrxB-lwlnYeTNqDTM48c4TO7W9vlxbxsiksn8nCOlAURbzTBMgfA2KTKBezMpbbt2BEim2HFnuywrcd2WDwUiEbszidMstXJeH79FCBZDLdB2_jLZJhHri7-Yy8NhuY6ktakGbcoDf-Hau1dSR1lly8gt9_SFlPKNRdsO3Fu5HUKneVvCDZsVozlnaZR6HnsoprSkbjKTURyuuju9awPgahsLyNK9sL9nsjC1Y7Z6YDkSM2"/>
       </div>
       <h1 class="font-headline-md text-primary">Daisy-Home</h1>
     </div>
     <button class="text-primary p-2"><span class="material-symbols-outlined">search</span></button>
   </header>
-
   <main class="px-margin-page pb-32 pt-4 space-y-6 max-w-[600px] mx-auto">
-    <!-- Together Banner -->
     <section class="tonal-elevation-1 rounded-2xl p-6 bg-surface-container-low relative overflow-hidden flex items-center justify-between min-h-[120px]">
-      <div class="relative z-10">
-        <div class="flex items-center gap-2">
-          <span class="text-lg font-medium text-secondary">在一起已</span>
-          <div class="flex items-baseline gap-1">
-            <span class="font-display-lg text-primary text-4xl" id="days-counter">--</span>
-            <span class="text-primary text-xl font-bold">天</span>
-          </div>
-        </div>
-        <p class="text-sm text-secondary mt-1">始于 2026-06-11</p>
-      </div>
-      <div class="flex items-center gap-4">
-        <div class="flex -space-x-3">
-          <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQNzDZDNmrLsdF5ltHW71HR8Dwy90bjOokQ8SlU8YW0h1q3zBapFwRE7bkeeeWIbFQdAfSQUaujIA_fw2ol168Qbblsp0y5RiWMmLynyvEwcYvG9SlypjI1SmeX-ne183D9XFOxMW98UL7NvDmjKVmoFeux42AM5Z8Y0yPJMk7h95Op1igEsXJOSJ4Jsco8pMAPfFsTHSxsc5ILIxCVcdafncBbr99KQQADp1zYQVh73_sJ5zuban8MAlYe7kYnTUBJVNR6U6xSMfD"/></div>
-          <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSH8d-A8EfUaY9P1dHEDPs6SfvrBKoQtoPQIGXGTBV2B-Vu7kngII5w7ebAVCfujHfVkSLkWG3qM-WMyxvwGnnSvF3FSlNNlE2AuzJRNGnmQTv20SEwcg6hS7Ijr5w5ZE-cTlvT-cQxy5XnfxpZFPCPZCSFp8WFs9wLpRL38JgmEh7iOaNObXdAd80f-7h7zqXivyAFgwXzk9KYA48vlA0KYLcATbFxEwqnxr_EldH0sSeih9Di_Wn1BhWbStqWl3HHQCsB_inK1BZ"/></div>
-        </div>
-        <span class="material-symbols-outlined text-primary/30 text-4xl">favorite</span>
-      </div>
+      <div class="relative z-10"><div class="flex items-center gap-2"><span class="text-lg font-medium text-secondary">在一起已</span><div class="flex items-baseline gap-1"><span class="font-display-lg text-primary text-4xl" id="days-counter">--</span><span class="text-primary text-xl font-bold">天</span></div></div><p class="text-sm text-secondary mt-1">始于 2026-06-11</p></div>
+      <div class="flex items-center gap-4"><div class="flex -space-x-3"><div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQNzDZDNmrLsdF5ltHW71HR8Dwy90bjOokQ8SlU8YW0h1q3zBapFwRE7bkeeeWIbFQdAfSQUaujIA_fw2ol168Qbblsp0y5RiWMmLynyvEwcYvG9SlypjI1SmeX-ne183D9XFOxMW98UL7NvDmjKVmoFeux42AM5Z8Y0yPJMk7h95Op1igEsXJOSJ4Jsco8pMAPfFsTHSxsc5ILIxCVcdafncBbr99KQQADp1zYQVh73_sJ5zuban8MAlYe7kYnTUBJVNR6U6xSMfD"/></div><div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden shadow-sm"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSH8d-A8EfUaY9P1dHEDPs6SfvrBKoQtoPQIGXGTBV2B-Vu7kngII5w7ebAVCfujHfVkSLkWG3qM-WMyxvwGnnSvF3FSlNNlE2AuzJRNGnmQTv20SEwcg6hS7Ijr5w5ZE-cTlvT-cQxy5XnfxpZFPCPZCSFp8WFs9wLpRL38JgmEh7iOaNObXdAd80f-7h7zqXivyAFgwXzk9KYA48vlA0KYLcATbFxEwqnxr_EldH0sSeih9Di_Wn1BhWbStqWl3HHQCsB_inK1BZ"/></div></div><span class="material-symbols-outlined text-primary/30 text-4xl">favorite</span></div>
     </section>
-
-    <!-- Quick Entry -->
     <section class="grid grid-cols-3 gap-6">
-      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="navigateTo('home');alert('提醒功能')">
-        <div class="w-12 h-12 bg-primary-container/20 text-primary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">notifications_active</span></div>
-        <span class="text-sm font-semibold">提醒</span>
-      </button>
-      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="openDiary()">
-        <div class="w-12 h-12 bg-secondary-container text-primary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">auto_stories</span></div>
-        <span class="text-sm font-semibold">日记</span>
-      </button>
-      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="navigateTo('sessions')">
-        <div class="w-12 h-12 bg-tertiary-container/20 text-tertiary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">edit_note</span></div>
-        <span class="text-sm font-semibold">记录</span>
-      </button>
+      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="showQuickEventForm()"><div class="w-12 h-12 bg-primary-container/20 text-primary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">notifications_active</span></div><span class="text-sm font-semibold">提醒</span></button>
+      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="openDiary()"><div class="w-12 h-12 bg-secondary-container text-primary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">auto_stories</span></div><span class="text-sm font-semibold">日记</span></button>
+      <button class="flex flex-col items-center gap-3 p-5 tonal-elevation-1 rounded-2xl active:scale-95 transition-transform bg-white" onclick="navigateTo('sessions')"><div class="w-12 h-12 bg-tertiary-container/20 text-tertiary rounded-xl flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined">edit_note</span></div><span class="text-sm font-semibold">记录</span></button>
     </section>
-
-    <!-- Calendar -->
     <section class="tonal-elevation-1 rounded-2xl p-6" id="calendar-section">
       <div class="flex justify-between items-center mb-6">
-        <button class="flex items-center gap-1 group" id="calendar-toggle-btn">
-          <h2 class="text-xl font-bold text-on-surface" id="calendar-month-label">2026年6月</h2>
-          <span class="material-symbols-outlined text-secondary text-base transition-transform duration-300" id="toggle-icon">expand_more</span>
-        </button>
-        <div class="flex gap-2">
-          <button class="p-2 hover:bg-surface-container rounded-full text-secondary transition-colors" onclick="changeCalendarMonth(-1)"><span class="material-symbols-outlined">chevron_left</span></button>
-          <button class="p-2 hover:bg-surface-container rounded-full text-secondary transition-colors" onclick="changeCalendarMonth(1)"><span class="material-symbols-outlined">chevron_right</span></button>
-        </div>
+        <button class="flex items-center gap-1 group" id="calendar-toggle-btn"><h2 class="text-xl font-bold text-on-surface" id="calendar-month-label">--</h2><span class="material-symbols-outlined text-secondary text-base transition-transform duration-300" id="toggle-icon">expand_more</span></button>
+        <div class="flex gap-2"><button class="p-2 hover:bg-surface-container rounded-full text-secondary transition-colors" onclick="changeCalendarMonth(-1)"><span class="material-symbols-outlined">chevron_left</span></button><button class="p-2 hover:bg-surface-container rounded-full text-secondary transition-colors" onclick="changeCalendarMonth(1)"><span class="material-symbols-outlined">chevron_right</span></button></div>
       </div>
       <div class="transition-all duration-300 overflow-hidden" id="calendar-content" style="max-height:500px">
         <div class="calendar-grid text-center mb-2"><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">日</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">一</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">二</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">三</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">四</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">五</div><div class="text-sm font-medium text-secondary/60 aspect-square flex items-center justify-center">六</div></div>
@@ -165,71 +122,40 @@ tailwind.config = {
         <div class="flex items-center gap-2"><span class="material-symbols-outlined !text-[14px]">event</span><span>日程</span></div>
       </div>
     </section>
-
-    <!-- Recent Activity -->
-    <section class="space-y-4" id="activity-section">
-      <h3 class="font-bold text-lg text-on-surface px-1">最新动态</h3>
-      <div class="space-y-4" id="activity-list">
-        <div class="tonal-elevation-1 p-5 rounded-2xl flex gap-4 items-center transition-all active:bg-surface-container-low">
-          <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 text-primary"><span class="material-symbols-outlined">menu_book</span></div>
-          <div class="flex-1 min-w-0"><div class="flex justify-between items-baseline mb-1"><p class="font-bold text-base truncate">小D 更新了日记</p><span class="text-xs text-outline">2小时前</span></div><p class="text-sm text-secondary/80 truncate">"今天在公园看到一朵超漂亮的花..."</p></div>
-        </div>
-      </div>
-    </section>
+    <section class="space-y-4" id="activity-section"><h3 class="font-bold text-lg text-on-surface px-1">最新动态</h3><div class="space-y-4" id="activity-list"></div></section>
   </main>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- PAGE: SESSIONS LIST -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ PAGE: SESSIONS ══ -->
 <section class="page-section" id="page-sessions">
   <header class="bg-surface/80 glass-header backdrop-blur-md sticky top-0 w-full z-40 h-nav-height flex justify-between items-center px-margin-page">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container/20 flex items-center justify-center border border-outline-variant/30 cursor-pointer" onclick="triggerAvatarUpload()">
-        <img alt="头像" class="w-full h-full object-cover" id="avatar-img-sessions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-LmnU4xo-wa8lH8QMTbsuL5IOOtnB7qrxB-lwlnYeTNqDTM48c4TO7W9vlxbxsiksn8nCOlAURbzTBMgfA2KTKBezMpbbt2BEim2HFnuywrcd2WDwUiEbszidMstXJeH79FCBZDLdB2_jLZJhHri7-Yy8NhuY6ktakGbcoDf-Hau1dSR1lly8gt9_SFlPKNRdsO3Fu5HUKneVvCDZsVozlnaZR6HnsoprSkbjKTURyuuju9awPgahsLyNK9sL9nsjC1Y7Z6YDkSM2"/>
-      </div>
+      <div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container/20 flex items-center justify-center border border-outline-variant/30 cursor-pointer" onclick="triggerAvatarUpload()"><img alt="头像" class="w-full h-full object-cover" id="avatar-img-sessions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-LmnU4xo-wa8lH8QMTbsuL5IOOtnB7qrxB-lwlnYeTNqDTM48c4TO7W9vlxbxsiksn8nCOlAURbzTBMgfA2KTKBezMpbbt2BEim2HFnuywrcd2WDwUiEbszidMstXJeH79FCBZDLdB2_jLZJhHri7-Yy8NhuY6ktakGbcoDf-Hau1dSR1lly8gt9_SFlPKNRdsO3Fu5HUKneVvCDZsVozlnaZR6HnsoprSkbjKTURyuuju9awPgahsLyNK9sL9nsjC1Y7Z6YDkSM2"/></div>
       <h1 class="font-headline-md font-bold text-primary">Daisy-Home</h1>
     </div>
     <button class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors active:scale-95"><span class="material-symbols-outlined">search</span></button>
   </header>
-
   <main class="max-w-[600px] mx-auto min-h-screen pb-[120px]">
     <section class="px-margin-page mt-6 mb-6">
-      <button class="w-full h-[56px] bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 font-headline-md shadow-sm active:scale-[0.98] transition-transform" onclick="createNewSession()">
-        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">add_circle</span>
-        <span>+ 新对话</span>
-      </button>
+      <button class="w-full h-[56px] bg-primary text-on-primary rounded-xl flex items-center justify-center gap-2 font-headline-md shadow-sm active:scale-[0.98] transition-transform" onclick="createNewSession()"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">add_circle</span><span>+ 新对话</span></button>
     </section>
-    <div class="px-margin-page space-y-2" id="sessions-list">
-      <div class="text-center text-secondary py-8" id="sessions-empty">暂无对话，点击上方按钮开始</div>
-    </div>
+    <div class="px-margin-page space-y-2" id="sessions-list"><div class="text-center text-secondary py-8" id="sessions-empty">暂无对话，点击上方按钮开始</div></div>
   </main>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- PAGE: CHAT -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ PAGE: CHAT ══════ -->
 <section class="page-section" id="page-chat">
   <header class="bg-surface/80 backdrop-blur-md sticky top-0 z-40 w-full flex items-center justify-between px-margin-page h-nav-height border-b border-outline-variant/10">
     <div class="flex items-center gap-3">
       <button class="material-symbols-outlined text-on-surface hover:bg-surface-container-high p-2 rounded-full transition-colors active:scale-95" onclick="navigateTo('sessions')">arrow_back</button>
       <div class="flex items-center gap-3">
-        <div class="relative">
-          <img alt="Avatar" class="w-avatar-sm h-avatar-sm rounded-full object-cover" id="chat-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp1cnxOzZ-J7A_TFsatq8xOB_hrZijZsHvYE_epH43NAQrpjZN1NiM21tsNLXtY21jmLGHU6D79WEBewTHpO0qoAcPCYJpOYZEAOWBsTNHdCjfjzeQLpl1i29dRElqYa5wmVIdT966hyynBQCHfudaZsHuiFd_-tK7jdNO77hWuNLZxlNe1SbWX5svruvMAKJra5eR_yzJYlC--ceTju8LrdnczOwzeBirMLzp23cNVK_mfVwaLVQTyhGb7rCAy-mDyAUe5EYTK_sj"/>
-          <span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface rounded-full"></span>
-        </div>
-        <div class="flex flex-col">
-          <h1 class="font-headline-md text-headline-md text-primary leading-tight" id="chat-title">Daisy-Home</h1>
-          <span class="font-label-md text-label-md text-secondary" id="chat-status">在线</span>
-        </div>
+        <div class="relative cursor-pointer" onclick="triggerAvatarUpload()"><img alt="AI Avatar" class="w-avatar-sm h-avatar-sm rounded-full object-cover" id="chat-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp1cnxOzZ-J7A_TFsatq8xOB_hrZijZsHvYE_epH43NAQrpjZN1NiM21tsNLXtY21jmLGHU6D79WEBewTHpO0qoAcPCYJpOYZEAOWBsTNHdCjfjzeQLpl1i29dRElqYa5wmVIdT966hyynBQCHfudaZsHuiFd_-tK7jdNO77hWuNLZxlNe1SbWX5svruvMAKJra5eR_yzJYlC--ceTju8LrdnczOwzeBirMLzp23cNVK_mfVwaLVQTyhGb7rCAy-mDyAUe5EYTK_sj"/><span class="absolute bottom-0 right-0 w-3 h-3 bg-primary border-2 border-surface rounded-full"></span></div>
+        <div class="flex flex-col"><h1 class="font-headline-md text-headline-md text-primary leading-tight" id="chat-title">Daisy-Home</h1><span class="font-label-md text-label-md text-secondary" id="chat-status">在线</span></div>
       </div>
     </div>
     <div class="flex items-center gap-2">
       <div class="relative">
-        <button class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-all active:scale-95" id="modelSelect" onclick="toggleModelMenu()">
-          <span class="font-label-md text-label-md text-on-surface-variant" id="model-label">DeepSeek</span>
-          <span class="material-symbols-outlined text-[18px]">expand_more</span>
-        </button>
+        <button class="flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-all active:scale-95" id="modelSelect" onclick="toggleModelMenu()"><span class="font-label-md text-label-md text-on-surface-variant" id="model-label">DeepSeek</span><span class="material-symbols-outlined text-[18px]">expand_more</span></button>
         <div class="absolute top-full right-0 mt-2 bg-white rounded-xl shadow-lg border border-outline-variant/20 overflow-hidden hidden z-50 min-w-[160px]" id="model-menu">
           <button class="w-full px-4 py-3 text-left hover:bg-surface-container-low text-sm" onclick="selectModel('deepseek-chat','DeepSeek')">DeepSeek</button>
           <button class="w-full px-4 py-3 text-left hover:bg-surface-container-low text-sm" onclick="selectModel('deepseek-reasoner','DeepSeek-R1')">DeepSeek-R1</button>
@@ -241,156 +167,134 @@ tailwind.config = {
     </div>
   </header>
 
-  <!-- Messages -->
-  <main class="flex-1 overflow-y-auto custom-scrollbar px-margin-page bg-[#f5f5f5] py-6" id="chat-messages" style="height:calc(100vh - 168px - 84px);">
-    <div class="max-w-[600px] mx-auto flex flex-col gap-gutter-chat" id="messages-container">
-      <div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary uppercase tracking-wider" id="date-divider">--</span></div>
-    </div>
+  <main class="flex-1 overflow-y-auto custom-scrollbar px-margin-page py-6" id="chat-messages" style="height:calc(100vh - 168px - 84px);background:#f5f5f5">
+    <div class="max-w-[600px] mx-auto flex flex-col gap-gutter-chat" id="messages-container"><div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary uppercase tracking-wider" id="date-divider">--</span></div></div>
   </main>
 
-  <!-- Quote Reply Bar -->
   <div class="bg-surface-container-high/60 border-t border-outline-variant/10 px-4 py-2 flex items-center gap-3" id="quote-bar">
     <div class="flex-1 bg-surface-container-highest/30 border-r-4 border-primary px-3 py-2 rounded-lg text-secondary text-sm italic truncate" id="quote-text"></div>
     <button class="text-secondary hover:text-error p-1" onclick="cancelQuote()"><span class="material-symbols-outlined">close</span></button>
   </div>
 
-  <!-- Input -->
   <footer class="bg-surface/80 backdrop-blur-md pb-safe border-t border-outline-variant/10 p-4">
     <div class="max-w-[600px] mx-auto flex items-end gap-3">
       <button class="text-secondary hover:text-primary p-2 flex-shrink-0" onclick="toggleEmojiPicker()"><span class="material-symbols-outlined">mood</span></button>
       <div class="flex-1 bg-surface-container-high rounded-2xl px-4 py-2 border border-outline-variant/20 flex items-end gap-2">
         <textarea class="flex-1 bg-transparent outline-none resize-none text-chat-bubble font-chat-bubble max-h-[120px] placeholder:text-secondary/60" rows="1" id="chat-input" placeholder="输入消息..." oninput="autoResize(this);updateSendButton()" onkeydown="handleChatKey(event)"></textarea>
       </div>
-      <button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 active:scale-90 transition-transform" id="send-btn" onclick="sendMessage()">
-        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">send</span>
-      </button>
+      <button class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 active:scale-90 transition-transform" id="send-btn" onclick="sendMessage()"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">send</span></button>
     </div>
   </footer>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- PAGE: SETTINGS -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ PAGE: SETTINGS ══ -->
 <section class="page-section" id="page-settings">
   <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md sticky top-0 w-full z-40 flex justify-between items-center px-margin-page h-nav-height max-w-[600px] mx-auto">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden cursor-pointer" onclick="triggerAvatarUpload()">
-        <img alt="Profile" class="w-full h-full object-cover" id="avatar-img-settings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-LmnU4xo-wa8lH8QMTbsuL5IOOtnB7qrxB-lwlnYeTNqDTM48c4TO7W9vlxbxsiksn8nCOlAURbzTBMgfA2KTKBezMpbbt2BEim2HFnuywrcd2WDwUiEbszidMstXJeH79FCBZDLdB2_jLZJhHri7-Yy8NhuY6ktakGbcoDf-Hau1dSR1lly8gt9_SFlPKNRdsO3Fu5HUKneVvCDZsVozlnaZR6HnsoprSkbjKTURyuuju9awPgahsLyNK9sL9nsjC1Y7Z6YDkSM2"/>
-      </div>
+      <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden cursor-pointer" onclick="triggerAvatarUpload()"><img alt="Profile" class="w-full h-full object-cover" id="avatar-img-settings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-LmnU4xo-wa8lH8QMTbsuL5IOOtnB7qrxB-lwlnYeTNqDTM48c4TO7W9vlxbxsiksn8nCOlAURbzTBMgfA2KTKBezMpbbt2BEim2HFnuywrcd2WDwUiEbszidMstXJeH79FCBZDLdB2_jLZJhHri7-Yy8NhuY6ktakGbcoDf-Hau1dSR1lly8gt9_SFlPKNRdsO3Fu5HUKneVvCDZsVozlnaZR6HnsoprSkbjKTURyuuju9awPgahsLyNK9sL9nsjC1Y7Z6YDkSM2"/></div>
       <h1 class="font-headline-md font-bold text-primary">Daisy-Home</h1>
     </div>
     <button class="text-secondary hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95"><span class="material-symbols-outlined">search</span></button>
   </header>
-
   <main class="w-full max-w-[600px] mx-auto px-margin-page flex-grow pb-32 py-6">
-    <!-- 常规 -->
-    <div class="mb-12">
-      <h2 class="font-label-md text-label-md text-secondary px-4 mb-3">常规</h2>
+    <div class="mb-12"><h2 class="font-label-md text-label-md text-secondary px-4 mb-3">常规</h2>
       <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
-        <div class="flex items-center justify-between border-b border-outline-variant/10 px-4 min-h-[48px] py-6">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">notifications</span><span class="font-body-lg text-body-lg">消息通知</span></div>
-          <input checked class="ios-toggle mr-2" type="checkbox" id="toggle-notifications" onchange="saveSetting('notifications',this.checked)"/>
-        </div>
-        <div class="flex items-center justify-between px-4 min-h-[48px] py-6">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">self_care</span><span class="font-body-lg text-body-lg">独处提醒</span></div>
-          <input class="ios-toggle mr-2" type="checkbox" id="toggle-solitude" onchange="saveSetting('solitude',this.checked)"/>
-        </div>
+        <div class="flex items-center justify-between border-b border-outline-variant/10 px-4 min-h-[48px] py-6"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">notifications</span><span class="font-body-lg text-body-lg">消息通知</span></div><input checked class="ios-toggle mr-2" type="checkbox" id="toggle-notifications" onchange="saveSetting('notifications',this.checked)"/></div>
+        <div class="flex items-center justify-between px-4 min-h-[48px] py-6"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">self_care</span><span class="font-body-lg text-body-lg">独处提醒</span></div><input class="ios-toggle mr-2" type="checkbox" id="toggle-solitude" onchange="saveSetting('solitude',this.checked)"/></div>
       </div>
     </div>
-
-    <!-- 个性化 -->
-    <div class="mb-12">
-      <h2 class="font-label-md text-label-md text-secondary px-4 mb-3">个性化</h2>
+    <div class="mb-12"><h2 class="font-label-md text-label-md text-secondary px-4 mb-3">个性化</h2>
       <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
-        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="showBgPicker()">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">wallpaper</span><span class="font-body-lg text-body-lg">聊天背景</span></div>
-          <span class="text-secondary text-xl leading-none mr-2">›</span>
-        </button>
-        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="cycleFontSize()">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">text_fields</span><span class="font-body-lg text-body-lg">字体大小</span></div>
-          <div class="flex items-center gap-2"><span class="text-secondary text-label-md" id="font-size-label">标准</span><span class="text-secondary text-xl leading-none mr-2">›</span></div>
-        </button>
-        <div class="flex items-center justify-between px-4 min-h-[48px] py-6">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">dark_mode</span><span class="font-body-lg text-body-lg">夜间模式</span></div>
-          <input class="ios-toggle mr-2" id="nightModeToggle" type="checkbox" onchange="toggleNightMode()"/>
-        </div>
+        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="showBgPicker()"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">wallpaper</span><span class="font-body-lg text-body-lg">聊天背景</span></div><span class="text-secondary text-xl leading-none mr-2">›</span></button>
+        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="cycleFontSize()"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">text_fields</span><span class="font-body-lg text-body-lg">字体大小</span></div><div class="flex items-center gap-2"><span class="text-secondary text-label-md" id="font-size-label">标准</span><span class="text-secondary text-xl leading-none mr-2">›</span></div></button>
+        <div class="flex items-center justify-between px-4 min-h-[48px] py-6"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">dark_mode</span><span class="font-body-lg text-body-lg">夜间模式</span></div><input class="ios-toggle mr-2" id="nightModeToggle" type="checkbox" onchange="toggleNightMode()"/></div>
       </div>
     </div>
-
-    <!-- 数据与隐私 -->
-    <div class="mb-12">
-      <h2 class="font-label-md text-label-md text-secondary px-4 mb-3">数据与隐私</h2>
+    <div class="mb-12"><h2 class="font-label-md text-label-md text-secondary px-4 mb-3">数据与隐私</h2>
       <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
-        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="exportChat()">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">ios_share</span><span class="font-body-lg text-body-lg">导出聊天</span></div>
-          <span class="text-secondary text-xl leading-none mr-2">›</span>
-        </button>
-        <button class="w-full flex items-center justify-between hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="showClearModal()">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-error">delete</span><span class="font-body-lg text-body-lg text-error">清空所有</span></div>
-          <span class="text-error text-xl leading-none mr-2">›</span>
-        </button>
+        <button class="w-full flex items-center justify-between border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="exportChat()"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">ios_share</span><span class="font-body-lg text-body-lg">导出聊天</span></div><span class="text-secondary text-xl leading-none mr-2">›</span></button>
+        <button class="w-full flex items-center justify-between hover:bg-surface-container-low transition-colors active:scale-[0.98] px-4 min-h-[48px] py-6" onclick="showClearModal()"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-error">delete</span><span class="font-body-lg text-body-lg text-error">清空所有</span></div><span class="text-error text-xl leading-none mr-2">›</span></button>
       </div>
     </div>
-
-    <!-- 信息 -->
-    <div class="mb-12">
-      <h2 class="font-label-md text-label-md text-secondary px-4 mb-3">信息</h2>
-      <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/20">
-        <div class="flex items-center justify-between px-4 min-h-[48px] py-6">
-          <div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">info</span><span class="font-body-lg text-body-lg">关于</span></div>
-          <span class="text-secondary text-label-md">版本 2.4.0</span>
-        </div>
-      </div>
+    <div class="mb-12"><h2 class="font-label-md text-label-md text-secondary px-4 mb-3">信息</h2>
+      <div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/20"><div class="flex items-center justify-between px-4 min-h-[48px] py-6"><div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary">info</span><span class="font-body-lg text-body-lg">关于</span></div><span class="text-secondary text-label-md">版本 2.5.0</span></div></div>
     </div>
   </main>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- BOTTOM NAVIGATION -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ PAGE: FULL DIARY EDITOR ══ -->
+<section class="page-section" id="page-diary-editor">
+  <header class="bg-surface/80 backdrop-blur-md sticky top-0 z-40 w-full flex items-center justify-between px-margin-page h-nav-height border-b border-outline-variant/10">
+    <button class="material-symbols-outlined text-on-surface hover:bg-surface-container-high p-2 rounded-full transition-colors active:scale-95" onclick="closeDiaryEditor()">arrow_back</button>
+    <h1 class="font-headline-md text-primary">📖 写日记</h1>
+    <button class="text-primary font-headline-md hover:bg-surface-container-high px-4 py-2 rounded-full transition-colors active:scale-95" onclick="saveDiary()">保存</button>
+  </header>
+  <main class="max-w-[600px] mx-auto px-margin-page py-6 pb-32">
+    <div class="mb-4">
+      <label class="block text-sm text-secondary mb-1">日期</label>
+      <input type="date" class="w-full bg-surface-container-high rounded-xl px-4 py-3 outline-none border border-outline-variant/20 text-body-md" id="diary-date" />
+    </div>
+    <div class="mb-4">
+      <label class="block text-sm text-secondary mb-1">心情</label>
+      <div class="flex flex-wrap gap-2" id="diary-mood-selector">
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="😊">😊 开心</button>
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="😢">😢 难过</button>
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="😌">😌 平静</button>
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="🥰">🥰 幸福</button>
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="😤">😤 生气</button>
+        <button class="px-4 py-2 rounded-full border border-outline-variant/30 hover:bg-surface-container-high transition-colors text-lg mood-btn" data-mood="🤔">🤔 思考</button>
+      </div>
+      <input type="hidden" id="diary-mood" value=""/>
+    </div>
+    <textarea class="w-full bg-surface-container-high rounded-xl p-5 outline-none resize-none text-body-lg min-h-[300px] border border-outline-variant/20" id="diary-input-full" placeholder="今天发生了什么...写下你想记录的点点滴滴 ✍️"></textarea>
+    <div class="mt-6 flex gap-3">
+      <button class="flex-1 bg-primary text-on-primary py-4 rounded-full font-bold text-body-lg active:scale-95 transition-transform" onclick="saveDiary()">💾 保存日记</button>
+    </div>
+    <!-- Recent diary entries -->
+    <div class="mt-8" id="diary-history"><h3 class="font-bold text-lg text-on-surface mb-4">📚 最近的日记</h3><div class="space-y-3" id="diary-history-list"></div></div>
+  </main>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ BOTTOM NAV ══════ -->
 <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-nav-height px-4 pb-safe bg-surface/95 backdrop-blur-lg border-t border-outline-variant/10" id="bottom-nav">
-  <button class="flex flex-col items-center justify-center text-secondary/60 px-6 py-2 active:scale-90 transition-all nav-btn" data-page="sessions">
-    <span class="material-symbols-outlined mb-1">chat_bubble</span>
-    <span class="text-xs font-medium">聊天</span>
-  </button>
-  <button class="flex flex-col items-center justify-center text-primary bg-primary-container/15 rounded-2xl px-8 py-2 active:scale-90 transition-all nav-btn active" data-page="home">
-    <span class="material-symbols-outlined mb-1" style="font-variation-settings:'FILL' 1;">home</span>
-    <span class="text-xs font-bold">主页</span>
-  </button>
-  <button class="flex flex-col items-center justify-center text-secondary/60 px-6 py-2 active:scale-90 transition-all nav-btn" data-page="settings">
-    <span class="material-symbols-outlined mb-1">settings</span>
-    <span class="text-xs font-medium">设置</span>
-  </button>
+  <button class="flex flex-col items-center justify-center text-secondary/60 px-6 py-2 active:scale-90 transition-all nav-btn" data-page="sessions"><span class="material-symbols-outlined mb-1">chat_bubble</span><span class="text-xs font-medium">聊天</span></button>
+  <button class="flex flex-col items-center justify-center text-primary bg-primary-container/15 rounded-2xl px-8 py-2 active:scale-90 transition-all nav-btn active" data-page="home"><span class="material-symbols-outlined mb-1" style="font-variation-settings:'FILL' 1">home</span><span class="text-xs font-bold">主页</span></button>
+  <button class="flex flex-col items-center justify-center text-secondary/60 px-6 py-2 active:scale-90 transition-all nav-btn" data-page="settings"><span class="material-symbols-outlined mb-1">settings</span><span class="text-xs font-medium">设置</span></button>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- MODALS -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ MODALS ══════════ -->
 
 <!-- Clear All Modal -->
 <div class="hidden fixed inset-0 z-[60] flex items-center justify-center p-margin-page bg-black/40 backdrop-blur-sm" id="clearModal">
-  <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[320px] p-6 shadow-2xl">
-    <div class="text-center">
-      <div class="w-16 h-16 bg-error-container/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-error text-4xl">warning</span></div>
-      <h3 class="font-headline-md text-headline-md mb-2">清空所有数据？</h3>
-      <p class="font-body-md text-body-md text-secondary mb-6">此操作将永久删除所有聊天记录和个性化设置。操作不可撤销。</p>
-      <div class="flex flex-col gap-2">
-        <button class="bg-error text-on-error w-full py-3 rounded-full font-bold text-body-lg active:scale-95 transition-transform" onclick="confirmClearAll()">是的，清空所有内容</button>
-        <button class="bg-surface-container-high text-on-surface w-full py-3 rounded-full font-bold text-body-lg active:scale-95 transition-transform" onclick="hideClearModal()">取消</button>
-      </div>
+  <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[320px] p-6 shadow-2xl"><div class="text-center">
+    <div class="w-16 h-16 bg-error-container/20 rounded-full flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-error text-4xl">warning</span></div>
+    <h3 class="font-headline-md text-headline-md mb-2">清空所有数据？</h3>
+    <p class="font-body-md text-body-md text-secondary mb-6">此操作将永久删除所有聊天记录和个性化设置。操作不可撤销。</p>
+    <div class="flex flex-col gap-2">
+      <button class="bg-error text-on-error w-full py-3 rounded-full font-bold text-body-lg active:scale-95 transition-transform" onclick="confirmClearAll()">是的，清空所有内容</button>
+      <button class="bg-surface-container-high text-on-surface w-full py-3 rounded-full font-bold text-body-lg active:scale-95 transition-transform" onclick="hideClearModal()">取消</button>
     </div>
-  </div>
+  </div></div>
 </div>
 
-<!-- Context Menu (Long press) -->
+<!-- Context Menu -->
 <div class="context-menu" id="context-menu">
   <button onclick="contextAction('edit')"><span class="material-symbols-outlined text-[20px]">edit</span>编辑</button>
   <button onclick="contextAction('copy')"><span class="material-symbols-outlined text-[20px]">content_copy</span>复制</button>
   <button onclick="contextAction('delete')"><span class="material-symbols-outlined text-[20px] text-error">delete</span>删除</button>
   <button onclick="contextAction('quote')"><span class="material-symbols-outlined text-[20px]">format_quote</span>引用</button>
   <button onclick="contextAction('emoji')"><span class="material-symbols-outlined text-[20px]">add_reaction</span>Emoji</button>
-  <button onclick="contextAction('regenerate')" id="ctx-regenerate" style="display:none;"><span class="material-symbols-outlined text-[20px]">refresh</span>重新生成</button>
-  <button onclick="contextAction('version')" id="ctx-version" style="display:none;"><span class="material-symbols-outlined text-[20px]">swap_horiz</span>切换版本</button>
+  <button onclick="contextAction('regenerate')" id="ctx-regenerate" style="display:none"><span class="material-symbols-outlined text-[20px]">refresh</span>重新生成</button>
+  <button onclick="contextAction('version')" id="ctx-version" style="display:none"><span class="material-symbols-outlined text-[20px]">swap_horiz</span>切换版本</button>
+</div>
+
+<!-- Version Selector Modal -->
+<div class="version-selector" id="version-selector" onclick="if(event.target===this)this.classList.remove('show')">
+  <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[380px] p-6 shadow-2xl mx-4 max-h-[70vh] overflow-y-auto">
+    <h3 class="font-headline-md text-headline-md mb-4">📜 切换回复版本</h3>
+    <div class="space-y-2" id="version-list"></div>
+    <button class="w-full mt-4 bg-surface-container-high text-on-surface py-3 rounded-full font-bold active:scale-95" onclick="document.getElementById('version-selector').classList.remove('show')">取消</button>
+  </div>
 </div>
 
 <!-- Emoji Picker -->
@@ -399,20 +303,24 @@ tailwind.config = {
   <button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('😍')">😍</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('🤔')">🤔</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('👋')">👋</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('🌹')">🌹</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('💪')">💪</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('🥰')">🥰</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('🙏')">🙏</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="insertEmoji('✨')">✨</button>
 </div>
 
-<!-- Diary Modal -->
-<div class="hidden fixed inset-0 z-[60] flex items-center justify-center p-margin-page bg-black/40 backdrop-blur-sm" id="diaryModal">
-  <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[380px] p-6 shadow-2xl">
-    <h3 class="font-headline-md text-headline-md mb-4">📖 写日记</h3>
-    <textarea class="w-full bg-surface-container-high rounded-xl p-4 outline-none resize-none text-body-md mb-4 min-h-[120px]" id="diary-input" placeholder="今天发生了什么..."></textarea>
-    <div class="flex items-center gap-2 mb-4">
-      <span class="text-sm text-secondary">心情：</span>
-      <select class="bg-surface-container-high rounded-lg px-3 py-1 text-sm outline-none" id="diary-mood">
-        <option value="">选择心情</option><option value="😊">😊 开心</option><option value="😢">😢 难过</option><option value="😌">😌 平静</option><option value="🥰">🥰 幸福</option><option value="😤">😤 生气</option>
-      </select>
-    </div>
+<!-- Reaction Emoji Picker (for context menu reactions) -->
+<div class="emoji-picker" id="reaction-picker" style="bottom:120px">
+  <button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('❤️')">❤️</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('👍')">👍</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('😊')">😊</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('😂')">😂</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('😢')">😢</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('😍')">😍</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🔥')">🔥</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('💯')">💯</button>
+  <button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🎉')">🎉</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🤔')">🤔</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🥰')">🥰</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🙏')">🙏</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('✨')">✨</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('🌹')">🌹</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('💪')">💪</button><button class="text-2xl p-1 hover:bg-gray-100 rounded-lg" onclick="quickReact('👋')">👋</button>
+</div>
+
+<!-- Quick Event Form Modal -->
+<div class="hidden fixed inset-0 z-[60] flex items-center justify-center p-margin-page bg-black/40 backdrop-blur-sm" id="eventModal">
+  <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[360px] p-6 shadow-2xl">
+    <h3 class="font-headline-md text-headline-md mb-4">📅 添加事件</h3>
+    <input class="w-full bg-surface-container-high rounded-xl px-4 py-3 outline-none border border-outline-variant/20 text-body-md mb-3" id="event-title" placeholder="事件标题"/>
+    <input type="date" class="w-full bg-surface-container-high rounded-xl px-4 py-3 outline-none border border-outline-variant/20 text-body-md mb-3" id="event-date"/>
+    <select class="w-full bg-surface-container-high rounded-xl px-4 py-3 outline-none border border-outline-variant/20 text-body-md mb-4" id="event-type">
+      <option value="reminder">🔔 提醒</option><option value="anniversary">💕 纪念日</option><option value="schedule">📋 日程</option>
+    </select>
     <div class="flex gap-2">
-      <button class="flex-1 bg-primary text-on-primary py-3 rounded-full font-bold active:scale-95 transition-transform" onclick="saveDiary()">保存</button>
-      <button class="flex-1 bg-surface-container-high text-on-surface py-3 rounded-full font-bold active:scale-95 transition-transform" onclick="document.getElementById('diaryModal').classList.add('hidden')">取消</button>
+      <button class="flex-1 bg-primary text-on-primary py-3 rounded-full font-bold active:scale-95 transition-transform" onclick="saveEvent()">保存</button>
+      <button class="flex-1 bg-surface-container-high text-on-surface py-3 rounded-full font-bold active:scale-95 transition-transform" onclick="document.getElementById('eventModal').classList.add('hidden')">取消</button>
     </div>
   </div>
 </div>
@@ -422,29 +330,25 @@ tailwind.config = {
   <div class="bg-surface-container-lowest rounded-2xl w-full max-w-[320px] p-6 shadow-2xl">
     <h3 class="font-headline-md text-headline-md mb-4">选择聊天背景</h3>
     <div class="grid grid-cols-3 gap-3">
-      <div class="aspect-square rounded-xl bg-[#f5f5f5] border-2 border-primary cursor-pointer" onclick="setChatBg('#f5f5f5','默认')"></div>
-      <div class="aspect-square rounded-xl bg-[#FFF8E7] cursor-pointer border-2 border-transparent hover:border-primary" onclick="setChatBg('#FFF8E7','暖黄')"></div>
-      <div class="aspect-square rounded-xl bg-[#F0F0FF] cursor-pointer border-2 border-transparent hover:border-primary" onclick="setChatBg('#F0F0FF','淡紫')"></div>
-      <div class="aspect-square rounded-xl bg-[#FFF0F0] cursor-pointer border-2 border-transparent hover:border-primary" onclick="setChatBg('#FFF0F0','粉红')"></div>
-      <div class="aspect-square rounded-xl bg-[#F0FFF0] cursor-pointer border-2 border-transparent hover:border-primary" onclick="setChatBg('#F0FFF0','薄荷')"></div>
-      <div class="aspect-square rounded-xl bg-[#1a1f1b] cursor-pointer border-2 border-transparent hover:border-primary" onclick="setChatBg('#1a1f1b','深色')"></div>
+      <div class="aspect-square rounded-xl bg-[#f5f5f5] border-2 border-primary cursor-pointer" id="bg-default" onclick="setChatBg('#f5f5f5','默认')"></div>
+      <div class="aspect-square rounded-xl bg-[#FFF8E7] cursor-pointer border-2 border-transparent hover:border-primary" id="bg-warm" onclick="setChatBg('#FFF8E7','暖黄')"></div>
+      <div class="aspect-square rounded-xl bg-[#F0F0FF] cursor-pointer border-2 border-transparent hover:border-primary" id="bg-purple" onclick="setChatBg('#F0F0FF','淡紫')"></div>
+      <div class="aspect-square rounded-xl bg-[#FFF0F0] cursor-pointer border-2 border-transparent hover:border-primary" id="bg-pink" onclick="setChatBg('#FFF0F0','粉红')"></div>
+      <div class="aspect-square rounded-xl bg-[#F0FFF0] cursor-pointer border-2 border-transparent hover:border-primary" id="bg-mint" onclick="setChatBg('#F0FFF0','薄荷')"></div>
+      <div class="aspect-square rounded-xl bg-[#1a1f1b] cursor-pointer border-2 border-transparent hover:border-primary" id="bg-dark" onclick="setChatBg('#1a1f1b','深色')"></div>
     </div>
     <button class="w-full mt-4 bg-surface-container-high text-on-surface py-3 rounded-full font-bold active:scale-95" onclick="document.getElementById('bgModal').classList.add('hidden')">取消</button>
   </div>
 </div>
 
-<!-- Hidden file input for avatar -->
 <input type="file" accept="image/*" id="avatar-input" style="display:none" onchange="uploadAvatar(event)"/>
 
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
-<!-- SCRIPTS -->
-<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════ SCRIPTS ═════════ -->
 <script>
-// ── CONFIG ───────────────────────────────────────────────────────────────────
-const API_BASE = 'https://daisy-home-api.onrender.com';
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:3000/api' : '/api';
 const TOGETHER_START = new Date('2026-06-11');
 
-// ── GLOBAL STATE ─────────────────────────────────────────────────────────────
 let currentPage = 'home';
 let currentSessionId = null;
 let currentModel = 'deepseek-chat';
@@ -455,8 +359,9 @@ let contextMessageContent = null;
 let calendarYear, calendarMonth;
 let settings = { fontSize:'standard', nightMode:false, chatBg:'#f5f5f5', notifications:true, solitude:false };
 let longPressTimer = null;
+let diaryMood = '';
 
-// ── INIT ─────────────────────────────────────────────────────────────────────
+// ── INIT ──────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadSettings();
   const now = new Date();
@@ -464,119 +369,113 @@ document.addEventListener('DOMContentLoaded', () => {
   calendarMonth = now.getMonth() + 1;
   updateDaysCounter();
   renderCalendar();
-  loadCalendarMarkers();
-  loadEvents();
+  loadAllCalendarData();
+  loadEventsForActivity();
   loadDiaryEntries();
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => navigateTo(btn.dataset.page));
   });
   document.addEventListener('click', (e) => {
     if (!e.target.closest('#context-menu')) hideContextMenu();
-    if (!e.target.closest('#modelSelect') && !e.target.closest('#model-menu')) document.getElementById('model-menu').classList.add('hidden');
-    if (!e.target.closest('#emoji-picker') && !e.target.closest('button')?.querySelector?.('.material-symbols-outlined')?.innerHTML !== 'mood') document.getElementById('emoji-picker').classList.remove('show');
+    if (!e.target.closest('#modelSelect') && !e.target.closest('#model-menu'))
+      document.getElementById('model-menu').classList.add('hidden');
+    if (!e.target.closest('#emoji-picker') && !e.target.closest('#reaction-picker'))
+      { document.getElementById('emoji-picker').classList.remove('show'); document.getElementById('reaction-picker').classList.remove('show'); }
   });
-  // Close modals on outside click
-  ['clearModal','diaryModal','bgModal'].forEach(id => {
+  ['clearModal','eventModal','bgModal'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(e){ if(e.target===this) this.classList.add('hidden'); });
   });
-  // Calendar toggle
   document.getElementById('calendar-toggle-btn').addEventListener('click', () => {
     const content = document.getElementById('calendar-content');
     const icon = document.getElementById('toggle-icon');
-    if (content.style.maxHeight === '0px') {
-      content.style.maxHeight = '500px';
-      icon.style.transform = 'rotate(180deg)';
-    } else {
-      content.style.maxHeight = '0px';
-      icon.style.transform = 'rotate(0deg)';
-    }
+    if (content.style.maxHeight === '0px') { content.style.maxHeight = '500px'; icon.style.transform = 'rotate(180deg)'; }
+    else { content.style.maxHeight = '0px'; icon.style.transform = 'rotate(0deg)'; }
+  });
+  // Mood selector buttons
+  document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.mood-btn').forEach(b => { b.classList.remove('bg-primary-container','border-primary'); b.classList.add('border-outline-variant/30'); });
+      this.classList.add('bg-primary-container','border-primary');
+      this.classList.remove('border-outline-variant/30');
+      diaryMood = this.dataset.mood;
+      document.getElementById('diary-mood').value = this.dataset.mood;
+    });
   });
 });
 
-// ── NAVIGATION ───────────────────────────────────────────────────────────────
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
 function navigateTo(page) {
   currentPage = page;
   document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
   const target = document.getElementById('page-' + page);
   if (target) target.classList.add('active');
 
-  // Update nav buttons
-  document.querySelectorAll('.nav-btn').forEach(b => {
-    b.classList.remove('text-primary','bg-primary-container/15','rounded-2xl');
-    b.classList.add('text-secondary/60');
-    const span = b.querySelector('span:last-child');
-    if(span) span.classList.remove('font-bold');
-    const icon = b.querySelector('.material-symbols-outlined');
-    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
-  });
-  const activeBtn = document.querySelector(`.nav-btn[data-page="${page === 'sessions' ? 'sessions' : page === 'chat' ? 'sessions' : page}"]`);
-  if (page === 'chat') {
-    // Chat page doesn't have a direct nav button; highlight sessions
-    const sessBtn = document.querySelector('.nav-btn[data-page="sessions"]');
-    if (sessBtn) {
-      sessBtn.classList.add('text-primary','bg-primary-container/15','rounded-2xl');
-      sessBtn.classList.remove('text-secondary/60');
-      const span = sessBtn.querySelector('span:last-child');
-      if(span) span.classList.add('font-bold');
-      const icon = sessBtn.querySelector('.material-symbols-outlined');
-      if(icon) icon.style.fontVariationSettings = "'FILL' 1";
-    }
-  } else {
-    const btn = document.querySelector(`.nav-btn[data-page="${page}"]`);
-    if (btn) {
-      btn.classList.add('text-primary','bg-primary-container/15','rounded-2xl');
-      btn.classList.remove('text-secondary/60');
-      const span = btn.querySelector('span:last-child');
-      if(span) span.classList.add('font-bold');
-      const icon = btn.querySelector('.material-symbols-outlined');
-      if(icon) icon.style.fontVariationSettings = "'FILL' 1";
-    }
-  }
+  const isMainPage = ['home','sessions','settings'].includes(page);
+  document.getElementById('bottom-nav').style.display = isMainPage ? 'flex' : 'none';
 
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.remove('text-primary','bg-primary-container/15','rounded-2xl'); b.classList.add('text-secondary/60');
+    const span = b.querySelector('span:last-child'); if(span) span.classList.remove('font-bold');
+    const icon = b.querySelector('.material-symbols-outlined'); if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+  });
+  if (isMainPage) {
+    const btn = document.querySelector(`.nav-btn[data-page="${page}"]`);
+    if (btn) { btn.classList.add('text-primary','bg-primary-container/15','rounded-2xl'); btn.classList.remove('text-secondary/60'); const span = btn.querySelector('span:last-child'); if(span) span.classList.add('font-bold'); const icon = btn.querySelector('.material-symbols-outlined'); if(icon) icon.style.fontVariationSettings = "'FILL' 1"; }
+  }
   if (page === 'sessions') loadSessions();
-  if (page === 'home') { updateDaysCounter(); loadEvents(); loadDiaryEntries(); }
+  if (page === 'home') { updateDaysCounter(); loadAllCalendarData(); loadEventsForActivity(); loadDiaryEntries(); }
+  if (page === 'chat') {
+    const el = document.getElementById('chat-messages');
+    if (el) el.style.backgroundColor = settings.chatBg;
+    document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('text-primary','bg-primary-container/15','rounded-2xl'); b.classList.add('text-secondary/60'); const span = b.querySelector('span:last-child'); if(span) span.classList.remove('font-bold'); const icon = b.querySelector('.material-symbols-outlined'); if(icon) icon.style.fontVariationSettings = "'FILL' 0"; });
+    const sessBtn = document.querySelector('.nav-btn[data-page="sessions"]');
+    if (sessBtn) { sessBtn.classList.add('text-primary','bg-primary-container/15','rounded-2xl'); sessBtn.classList.remove('text-secondary/60'); const span = sessBtn.querySelector('span:last-child'); if(span) span.classList.add('font-bold'); const icon = sessBtn.querySelector('.material-symbols-outlined'); if(icon) icon.style.fontVariationSettings = "'FILL' 1"; }
+  }
 }
 
-// ── API HELPER ───────────────────────────────────────────────────────────────
+// ── API HELPER ─────────────────────────────────────────────────────────────
 async function api(path, options = {}) {
-  const url = `${API_BASE}/api${path}`;
+  const url = `${API_BASE}${path}`;
   const config = { headers: { 'Content-Type': 'application/json' }, ...options };
   if (config.body && typeof config.body === 'object') config.body = JSON.stringify(config.body);
   try {
     const res = await fetch(url, config);
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({ error: res.statusText }));
-      throw new Error(err.error || res.statusText);
-    }
+    if (!res.ok) { const err = await res.json().catch(() => ({ error: res.statusText })); throw new Error(err.error || res.statusText); }
     return await res.json();
-  } catch (err) {
-    console.error('API error:', err);
-    throw err;
-  }
+  } catch (err) { console.error('API error:', err); throw err; }
 }
 
-// ── DAYS COUNTER ─────────────────────────────────────────────────────────────
+// ── DAYS COUNTER ───────────────────────────────────────────────────────────
 function updateDaysCounter() {
   const now = new Date();
   const diff = Math.floor((now - TOGETHER_START) / (1000 * 60 * 60 * 24));
   const el = document.getElementById('days-counter');
   if (el) {
-    const target = diff;
-    let current = parseInt(el.innerText) || target - 20;
+    const target = diff; let current = parseInt(el.innerText) || target - 20;
     if (isNaN(current)) current = target - 20;
-    function anim() {
-      if (current < target) { current++; el.innerText = current; setTimeout(anim, 20); }
-    }
-    if (current < target) anim();
-    else el.innerText = target;
+    function anim(){ if(current < target){ current++; el.innerText = current; setTimeout(anim, 20); } }
+    if (current < target) anim(); else el.innerText = target;
   }
 }
 
-// ── CALENDAR ─────────────────────────────────────────────────────────────────
+// ── CALENDAR ───────────────────────────────────────────────────────────────
 let calendarMarkers = [];
-async function loadCalendarMarkers() {
+async function loadAllCalendarData() {
   try {
-    calendarMarkers = await api(`/calendar-markers?month=${calendarMonth}&year=${calendarYear}`);
+    const [markers, events] = await Promise.all([
+      api(`/calendar-markers?month=${calendarMonth}&year=${calendarYear}`),
+      api('/events')
+    ]);
+    calendarMarkers = markers || [];
+    // Merge events into markers
+    (events || []).forEach(e => {
+      if (e.event_date && e.event_date.startsWith(`${calendarYear}-${String(calendarMonth).padStart(2,'0')}`)) {
+        // Check if already marked
+        if (!calendarMarkers.find(m => m.marker_date === e.event_date)) {
+          calendarMarkers.push({ marker_date: e.event_date, type: e.type === 'anniversary' ? 'anniversary' : 'schedule', label: e.title, color: '' });
+        }
+      }
+    });
   } catch(e) { calendarMarkers = []; }
   renderCalendar();
 }
@@ -586,114 +485,63 @@ function changeCalendarMonth(delta) {
   if (calendarMonth < 1) { calendarMonth = 12; calendarYear--; }
   if (calendarMonth > 12) { calendarMonth = 1; calendarYear++; }
   document.getElementById('calendar-month-label').textContent = `${calendarYear}年${calendarMonth}月`;
-  loadCalendarMarkers();
+  loadAllCalendarData();
 }
 
 function renderCalendar() {
   const grid = document.getElementById('calendar-grid');
   if (!grid) return;
   document.getElementById('calendar-month-label').textContent = `${calendarYear}年${calendarMonth}月`;
-
   const firstDay = new Date(calendarYear, calendarMonth - 1, 1).getDay();
   const daysInMonth = new Date(calendarYear, calendarMonth, 0).getDate();
   const daysInPrev = new Date(calendarYear, calendarMonth - 1, 0).getDate();
-
   let html = '';
-  // Previous month tail
-  for (let i = firstDay - 1; i >= 0; i--) {
-    html += `<div class="text-secondary opacity-30 aspect-square flex items-center justify-center text-sm">${daysInPrev - i}</div>`;
-  }
-  // Current month
+  for (let i = firstDay - 1; i >= 0; i--) { html += `<div class="text-secondary opacity-30 aspect-square flex items-center justify-center text-sm">${daysInPrev - i}</div>`; }
+  const today = new Date();
   for (let d = 1; d <= daysInMonth; d++) {
     const dateStr = `${calendarYear}-${String(calendarMonth).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const marker = calendarMarkers.find(m => m.marker_date === dateStr);
-    const today = new Date();
     const isToday = d === today.getDate() && calendarMonth === today.getMonth() + 1 && calendarYear === today.getFullYear();
-
     if (marker) {
-      if (marker.type === 'anniversary') {
-        html += `<div class="relative flex flex-col items-center justify-center aspect-square"><div class="absolute inset-1 bg-tertiary-container/30 rounded-full"></div><span class="z-10 font-bold text-tertiary text-sm">${d}</span></div>`;
-      } else if (marker.type === 'period') {
-        html += `<div class="relative flex flex-col items-center justify-center aspect-square"><span class="z-10 text-sm">${d}</span><div class="w-1.5 h-1.5 bg-primary rounded-full absolute bottom-1"></div></div>`;
-      } else {
-        html += `<div class="relative flex flex-col items-center justify-center aspect-square"><span class="z-10 text-sm">${d}</span><span class="material-symbols-outlined !text-[10px] text-secondary absolute bottom-0.5">event</span></div>`;
-      }
-    } else if (isToday) {
-      html += `<div class="relative flex flex-col items-center justify-center aspect-square"><div class="absolute inset-1.5 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">${d}</div></div>`;
-    } else {
-      html += `<div class="aspect-square flex items-center justify-center text-sm">${d}</div>`;
-    }
+      if (marker.type === 'anniversary') { html += `<div class="relative flex flex-col items-center justify-center aspect-square"><div class="absolute inset-1 bg-tertiary-container/30 rounded-full"></div><span class="z-10 font-bold text-tertiary text-sm">${d}</span></div>`; }
+      else if (marker.type === 'period') { html += `<div class="relative flex flex-col items-center justify-center aspect-square"><span class="z-10 text-sm">${d}</span><div class="w-1.5 h-1.5 bg-primary rounded-full absolute bottom-1"></div></div>`; }
+      else { html += `<div class="relative flex flex-col items-center justify-center aspect-square"><span class="z-10 text-sm">${d}</span><span class="material-symbols-outlined !text-[10px] text-secondary absolute bottom-0.5" title="${escapeHtml(marker.label||'')}">event</span></div>`; }
+    } else if (isToday) { html += `<div class="relative flex flex-col items-center justify-center aspect-square"><div class="absolute inset-1.5 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm">${d}</div></div>`; }
+    else { html += `<div class="aspect-square flex items-center justify-center text-sm">${d}</div>`; }
   }
   grid.innerHTML = html;
 }
 
-// ── SESSIONS ─────────────────────────────────────────────────────────────────
+// ── SESSIONS ───────────────────────────────────────────────────────────────
 async function loadSessions() {
   const list = document.getElementById('sessions-list');
   const empty = document.getElementById('sessions-empty');
   try {
     const sessions = await api('/sessions');
-    if (!sessions.length) {
-      list.innerHTML = '';
-      if (empty) empty.style.display = 'block';
-      return;
-    }
+    if (!sessions.length) { list.innerHTML = ''; if (empty) empty.style.display = 'block'; return; }
     if (empty) empty.style.display = 'none';
     list.innerHTML = sessions.map(s => `
       <div class="flex items-center gap-4 rounded-2xl hover:bg-surface-container-low transition-all cursor-pointer p-4 bg-surface-container-lowest" onclick="openSession('${s.id}','${(s.name||'新对话').replace(/'/g,"\\'")}')">
-        <div class="w-avatar-lg h-avatar-lg rounded-full overflow-hidden flex-shrink-0 bg-secondary-container/30 flex items-center justify-center">
-          <span class="material-symbols-outlined text-primary text-2xl">smart_toy</span>
-        </div>
-        <div class="flex-1 border-b border-outline-variant/20 pb-4">
-          <div class="flex justify-between items-center mb-1">
-            <span class="font-headline-md text-body-lg font-semibold text-on-surface">${s.name || '新对话'}</span>
-            <span class="text-label-md text-secondary">${formatTime(s.updated_at)}</span>
-          </div>
-          <p class="text-body-md text-on-surface-variant truncate max-w-[240px]">${s.last_message || '开始新对话...'}</p>
-        </div>
-      </div>
-    `).join('');
-  } catch (err) {
-    list.innerHTML = `<div class="text-center text-error py-4">加载失败: ${err.message}</div>`;
-  }
+        <div class="w-avatar-lg h-avatar-lg rounded-full overflow-hidden flex-shrink-0 bg-secondary-container/30 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-2xl">smart_toy</span></div>
+        <div class="flex-1 border-b border-outline-variant/20 pb-4"><div class="flex justify-between items-center mb-1"><span class="font-headline-md text-body-lg font-semibold text-on-surface">${escapeHtml(s.name || '新对话')}</span><span class="text-label-md text-secondary">${formatTime(s.updated_at)}</span></div><p class="text-body-md text-on-surface-variant truncate max-w-[240px]">${escapeHtml(s.last_message || '开始新对话...')}</p></div>
+      </div>`).join('');
+  } catch (err) { list.innerHTML = `<div class="text-center text-error py-4">加载失败: ${escapeHtml(err.message)}</div>`; }
 }
 
 async function createNewSession() {
   try {
     const session = await api('/sessions', { method: 'POST', body: { name: '新对话' } });
     openSession(session.id, session.name);
-  } catch (err) {
-    alert('创建失败: ' + err.message);
-  }
+  } catch (err) { alert('创建失败: ' + err.message); }
 }
 
-// ── CHAT ─────────────────────────────────────────────────────────────────────
+// ── CHAT ───────────────────────────────────────────────────────────────────
 async function openSession(id, name) {
   currentSessionId = id;
   document.getElementById('chat-title').textContent = name || 'Daisy-Home';
-  document.getElementById('page-sessions').classList.remove('active');
-  document.getElementById('page-chat').classList.add('active');
-  currentPage = 'chat';
+  navigateTo('chat');
   await loadMessages();
   document.getElementById('chat-input').focus();
-  // Update nav
-  document.querySelectorAll('.nav-btn').forEach(b => {
-    b.classList.remove('text-primary','bg-primary-container/15','rounded-2xl');
-    b.classList.add('text-secondary/60');
-    const span = b.querySelector('span:last-child');
-    if(span) span.classList.remove('font-bold');
-    const icon = b.querySelector('.material-symbols-outlined');
-    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
-  });
-  const sessBtn = document.querySelector('.nav-btn[data-page="sessions"]');
-  if (sessBtn) {
-    sessBtn.classList.add('text-primary','bg-primary-container/15','rounded-2xl');
-    sessBtn.classList.remove('text-secondary/60');
-    const span = sessBtn.querySelector('span:last-child');
-    if(span) span.classList.add('font-bold');
-    const icon = sessBtn.querySelector('.material-symbols-outlined');
-    if(icon) icon.style.fontVariationSettings = "'FILL' 1";
-  }
 }
 
 async function loadMessages() {
@@ -701,143 +549,66 @@ async function loadMessages() {
   const container = document.getElementById('messages-container');
   try {
     const msgs = await api(`/sessions/${currentSessionId}/messages`);
-    if (!msgs.length) {
-      container.innerHTML = `<div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary">开始对话吧 💬</span></div>`;
-      return;
-    }
+    if (!msgs.length) { container.innerHTML = `<div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary">开始对话吧 💬</span></div>`; return; }
     container.innerHTML = msgs.map((m, i) => {
       const prev = i > 0 ? msgs[i-1] : null;
       const showDate = !prev || !isSameDay(new Date(m.created_at), new Date(prev.created_at));
       let html = '';
-      if (showDate) {
-        html += `<div class="flex justify-center my-6"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary uppercase tracking-wider">${formatDate(new Date(m.created_at))}</span></div>`;
-      }
+      if (showDate) html += `<div class="flex justify-center my-6"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary uppercase tracking-wider">${formatDate(new Date(m.created_at))}</span></div>`;
+      const reactions = Array.isArray(m.reactions) ? m.reactions : [];
+      const reactionsHtml = reactions.length ? `<div class="flex flex-wrap gap-1 mt-1">${reactions.map(r => `<span class="reaction-badge" onclick="addReaction('${m.id}','${r.emoji}')">${r.emoji} ${r.count||1}</span>`).join('')}</div>` : '';
+      const contentSafe = escapeHtml(m.content);
+      const contentAttr = contentSafe.replace(/'/g,"&#39;").replace(/"/g,"&quot;");
       if (m.role === 'user') {
-        html += `<div class="flex flex-col items-end animate-message mb-4" data-msg-id="${m.id}" data-role="user" data-content="${escapeHtml(m.content)}">
+        html += `<div class="flex flex-col items-end animate-message mb-4" data-msg-id="${m.id}" data-role="user" data-content="${contentAttr}">
           <div class="max-w-[85%] flex flex-col gap-2">
-            <div class="bg-white text-on-surface p-5 rounded-2xl rounded-tr-[4px] shadow-sm border border-outline-variant/20 msg-bubble" oncontextmenu="return false" onmousedown="startLongPress(event,'${m.id}','user','${escapeHtml(m.content).replace(/'/g,"\\'")}')" ontouchstart="startLongPress(event,'${m.id}','user','${escapeHtml(m.content).replace(/'/g,"\\'")}')" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()">
+            <div class="bg-white text-on-surface p-5 rounded-2xl rounded-tr-[4px] shadow-sm border border-outline-variant/20 msg-bubble" oncontextmenu="return false" onmousedown="startLongPress(event,'${m.id}','user')" ontouchstart="startLongPress(event,'${m.id}','user')" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()">
               <p class="font-chat-bubble text-chat-bubble">${m.content}</p>
-            </div>
+            </div>${reactionsHtml}
             <span class="text-[10px] text-secondary font-label-md mr-1 text-right">${m.read ? '已读' : '未读'}</span>
-          </div>
-        </div>`;
+          </div></div>`;
       } else {
-        html += `<div class="flex items-start gap-4 animate-message mb-4" data-msg-id="${m.id}" data-role="assistant" data-content="${escapeHtml(m.content)}">
-          <img alt="AI" class="w-avatar-sm h-avatar-sm rounded-full flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp1cnxOzZ-J7A_TFsatq8xOB_hrZijZsHvYE_epH43NAQrpjZN1NiM21tsNLXtY21jmLGHU6D79WEBewTHpO0qoAcPCYJpOYZEAOWBsTNHdCjfjzeQLpl1i29dRElqYa5wmVIdT966hyynBQCHfudaZsHuiFd_-tK7jdNO77hWuNLZxlNe1SbWX5svruvMAKJra5eR_yzJYlC--ceTju8LrdnczOwzeBirMLzp23cNVK_mfVwaLVQTyhGb7rCAy-mDyAUe5EYTK_sj"/>
+        html += `<div class="flex items-start gap-4 animate-message mb-4" data-msg-id="${m.id}" data-role="assistant" data-content="${contentAttr}">
+          <img alt="AI" class="w-avatar-sm h-avatar-sm rounded-full flex-shrink-0 cursor-pointer" id="ai-avatar-${m.id}" src="${localStorage.getItem('daisy-avatar-url') || 'https://lh3.googleusercontent.com/aida-public/AB6AXuBp1cnxOzZ-J7A_TFsatq8xOB_hrZijZsHvYE_epH43NAQrpjZN1NiM21tsNLXtY21jmLGHU6D79WEBewTHpO0qoAcPCYJpOYZEAOWBsTNHdCjfjzeQLpl1i29dRElqYa5wmVIdT966hyynBQCHfudaZsHuiFd_-tK7jdNO77hWuNLZxlNe1SbWX5svruvMAKJra5eR_yzJYlC--ceTju8LrdnczOwzeBirMLzp23cNVK_mfVwaLVQTyhGb7rCAy-mDyAUe5EYTK_sj'}" onclick="triggerAvatarUpload()"/>
           <div class="flex flex-col gap-2 max-w-[85%]">
-            <div class="bg-primary-container text-on-primary-container p-5 rounded-2xl rounded-tl-[4px] shadow-sm msg-bubble" oncontextmenu="return false" onmousedown="startLongPress(event,'${m.id}','assistant','${escapeHtml(m.content).replace(/'/g,"\\'")}')" ontouchstart="startLongPress(event,'${m.id}','assistant','${escapeHtml(m.content).replace(/'/g,"\\'")}')" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()">
+            <div class="bg-primary-container text-on-primary-container p-5 rounded-2xl rounded-tl-[4px] shadow-sm msg-bubble" oncontextmenu="return false" onmousedown="startLongPress(event,'${m.id}','assistant')" ontouchstart="startLongPress(event,'${m.id}','assistant')" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()">
               <p class="font-chat-bubble text-chat-bubble">${m.content}</p>
-            </div>
+            </div>${reactionsHtml}
             ${m.version > 1 ? `<span class="text-[10px] text-secondary ml-1">版本 ${m.version}</span>` : ''}
-          </div>
-        </div>`;
+          </div></div>`;
       }
       return html;
     }).join('');
     scrollToBottom();
     setupMessageObservers();
-  } catch (err) {
-    container.innerHTML = `<div class="text-center text-error py-8">加载消息失败: ${err.message}</div>`;
-  }
+  } catch (err) { container.innerHTML = `<div class="text-center text-error py-8">加载消息失败: ${escapeHtml(err.message)}</div>`; }
 }
 
 async function sendMessage() {
   const input = document.getElementById('chat-input');
   const content = input.value.trim();
   if (!content || !currentSessionId) return;
-
-  input.value = '';
-  input.style.height = 'auto';
-  updateSendButton();
-
-  // Add user message to UI immediately
+  input.value = ''; input.style.height = 'auto'; updateSendButton();
   const container = document.getElementById('messages-container');
-  const tempId = 'temp-' + Date.now();
-  const quoteHtml = quotedMessage
-    ? `<div class="bg-surface-container-highest/30 border-r-4 border-primary px-4 py-3 rounded-lg mb-[-12px] mr-2 text-secondary text-sm italic z-0 opacity-70">"${truncate(quotedMessage.content, 60)}"</div>`
-    : '';
-
-  container.innerHTML += `
-    <div class="flex flex-col items-end animate-message mb-4" id="${tempId}">
-      <div class="max-w-[85%] flex flex-col gap-2">
-        ${quoteHtml}
-        <div class="bg-white text-on-surface p-5 rounded-2xl rounded-tr-[4px] shadow-sm border border-outline-variant/20 relative z-10">
-          <p class="font-chat-bubble text-chat-bubble">${content}</p>
-        </div>
-      </div>
-    </div>`;
-
-  cancelQuote();
-  scrollToBottom();
-
+  const quoteHtml = quotedMessage ? `<div class="bg-surface-container-highest/30 border-r-4 border-primary px-4 py-3 rounded-lg mb-[-12px] mr-2 text-secondary text-sm italic z-0 opacity-70">"${truncate(quotedMessage.content, 60)}"</div>` : '';
+  container.innerHTML += `<div class="flex flex-col items-end animate-message mb-4"><div class="max-w-[85%] flex flex-col gap-2">${quoteHtml}<div class="bg-white text-on-surface p-5 rounded-2xl rounded-tr-[4px] shadow-sm border border-outline-variant/20 relative z-10"><p class="font-chat-bubble text-chat-bubble">${content}</p></div></div></div>`;
+  cancelQuote(); scrollToBottom();
   try {
-    const result = await api('/chat', {
-      method: 'POST',
-      body: { sessionId: currentSessionId, message: content, model: currentModel }
-    });
-
-    // Replace temp message and add AI response
+    await api('/chat', { method: 'POST', body: { sessionId: currentSessionId, message: content, model: currentModel } });
     await loadMessages();
-    // Update session name if this is the first message
     document.getElementById('chat-title').textContent = content.substring(0, 20) + (content.length > 20 ? '...' : '');
   } catch (err) {
-    // Show error
-    container.innerHTML += `
-      <div class="flex items-start gap-4 animate-message mb-4">
-        <div class="flex flex-col gap-2 max-w-[85%]">
-          <div class="bg-error-container text-on-error-container p-5 rounded-2xl rounded-tl-[4px] shadow-sm">
-            <p class="font-chat-bubble text-chat-bubble">发送失败: ${err.message}</p>
-          </div>
-        </div>
-      </div>`;
+    container.innerHTML += `<div class="flex items-start gap-4 animate-message mb-4"><div class="flex flex-col gap-2 max-w-[85%]"><div class="bg-error-container text-on-error-container p-5 rounded-2xl rounded-tl-[4px] shadow-sm"><p class="font-chat-bubble text-chat-bubble">发送失败: ${escapeHtml(err.message)}</p></div></div></div>`;
     scrollToBottom();
   }
 }
 
-async function regenerateMessage(msgId) {
-  try {
-    await api(`/messages/${msgId}/regenerate`, { method: 'POST', body: { model: currentModel } });
-    await loadMessages();
-  } catch (err) {
-    alert('重新生成失败: ' + err.message);
-  }
-}
-
-async function deleteMessage(msgId) {
-  if (!confirm('确定删除这条消息？')) return;
-  try {
-    await api(`/messages/${msgId}`, { method: 'DELETE' });
-    hideContextMenu();
-    await loadMessages();
-  } catch (err) {
-    alert('删除失败: ' + err.message);
-  }
-}
-
-async function editMessage(msgId, newContent) {
-  try {
-    await api(`/messages/${msgId}`, { method: 'PUT', body: { content: newContent } });
-    await loadMessages();
-  } catch (err) {
-    alert('编辑失败: ' + err.message);
-  }
-}
-
-async function addReaction(msgId, emoji) {
-  try {
-    await api(`/messages/${msgId}/reactions`, { method: 'POST', body: { emoji } });
-    hideContextMenu();
-  } catch (err) {
-    console.error('Reaction error:', err);
-  }
-}
-
-// ── CONTEXT MENU ─────────────────────────────────────────────────────────────
-function startLongPress(e, msgId, role, content) {
+// ── CONTEXT MENU (FIXED: save id before hiding) ───────────────────────────
+function startLongPress(e, msgId, role) {
   e.preventDefault();
-  longPressTimer = setTimeout(() => {
-    showContextMenu(e, msgId, role, content);
-  }, 500);
+  const el = document.querySelector(`[data-msg-id="${msgId}"]`);
+  const content = el ? el.dataset.content || '' : '';
+  longPressTimer = setTimeout(() => { showContextMenu(e, msgId, role, content); }, 500);
 }
 function cancelLongPress() { clearTimeout(longPressTimer); }
 
@@ -848,126 +619,139 @@ function showContextMenu(e, msgId, role, content) {
   const menu = document.getElementById('context-menu');
   document.getElementById('ctx-regenerate').style.display = role === 'assistant' ? 'flex' : 'none';
   document.getElementById('ctx-version').style.display = role === 'assistant' ? 'flex' : 'none';
-  const x = Math.min((e.touches ? e.touches[0].clientX : e.clientX) || 100, window.innerWidth - 200);
-  const y = Math.min((e.touches ? e.touches[0].clientY : e.clientY) || 200, window.innerHeight - 350);
-  menu.style.left = x + 'px';
-  menu.style.top = y + 'px';
-  menu.classList.add('show');
+  const x = Math.min((e.touches ? e.touches[0].clientX : e.clientX) || 100, window.innerWidth - 210);
+  const y = Math.min((e.touches ? e.touches[0].clientY : e.clientY) || 200, window.innerHeight - 400);
+  menu.style.left = x + 'px'; menu.style.top = y + 'px'; menu.classList.add('show');
 }
+function hideContextMenu() { document.getElementById('context-menu').classList.remove('show'); document.getElementById('reaction-picker').classList.remove('show'); }
 
-function hideContextMenu() {
-  document.getElementById('context-menu').classList.remove('show');
-  contextMessageId = null;
-}
-
+// FIX: save contextMessageId BEFORE calling hideContextMenu
 function contextAction(action) {
-  if (!contextMessageId) return;
+  const msgId = contextMessageId; // SAVE before hide clears it
+  const msgRole = contextMessageRole;
+  const msgContent = contextMessageContent;
+  if (!msgId) return;
   hideContextMenu();
   switch (action) {
     case 'edit':
-      if (contextMessageRole !== 'user') return;
-      const newContent = prompt('编辑消息:', contextMessageContent);
-      if (newContent && newContent !== contextMessageContent) editMessage(contextMessageId, newContent);
+      if (msgRole !== 'user') return;
+      const newContent = prompt('编辑消息:', msgContent);
+      if (newContent && newContent !== msgContent) editMessage(msgId, newContent);
       break;
     case 'copy':
-      navigator.clipboard.writeText(contextMessageContent).then(() => {
-        // Brief feedback
-        const el = document.querySelector(`[data-msg-id="${contextMessageId}"] .msg-bubble`);
+      navigator.clipboard.writeText(msgContent).then(() => {
+        const el = document.querySelector(`[data-msg-id="${msgId}"] .msg-bubble`);
         if (el) { el.style.opacity = '0.7'; setTimeout(() => el.style.opacity = '1', 200); }
       }).catch(() => {});
       break;
-    case 'delete':
-      deleteMessage(contextMessageId);
-      break;
+    case 'delete': deleteMessage(msgId); break;
     case 'quote':
-      quotedMessage = { id: contextMessageId, content: contextMessageContent };
-      document.getElementById('quote-text').textContent = truncate(contextMessageContent, 80);
+      quotedMessage = { id: msgId, content: msgContent };
+      document.getElementById('quote-text').textContent = truncate(msgContent, 80);
       document.getElementById('quote-bar').classList.add('show');
       document.getElementById('chat-input').focus();
       break;
     case 'emoji':
-      // Quick emoji picker for reactions
-      const emoji = prompt('输入 Emoji 反应:', '❤️');
-      if (emoji) addReaction(contextMessageId, emoji);
+      // Show reaction picker near the menu position
+      contextMessageId = msgId; // temporarily restore for reaction
+      const rPicker = document.getElementById('reaction-picker');
+      rPicker.classList.add('show');
       break;
-    case 'regenerate':
-      regenerateMessage(contextMessageId);
-      break;
-    case 'version':
-      alert('版本切换功能：API 已支持多版本存储，UI 版本选择器即将推出。');
-      break;
+    case 'regenerate': regenerateMessage(msgId); break;
+    case 'version': showVersionSelector(msgId); break;
   }
 }
 
-// ── QUOTE ────────────────────────────────────────────────────────────────────
-function cancelQuote() {
-  quotedMessage = null;
-  document.getElementById('quote-bar').classList.remove('show');
-  document.getElementById('quote-text').textContent = '';
+async function regenerateMessage(msgId) {
+  try {
+    await api(`/messages/${msgId}/regenerate`, { method: 'POST', body: { model: currentModel } });
+    await loadMessages();
+  } catch (err) { alert('重新生成失败: ' + err.message); }
 }
 
-// ── EMOJI PICKER ─────────────────────────────────────────────────────────────
-function toggleEmojiPicker() {
-  document.getElementById('emoji-picker').classList.toggle('show');
-}
-function insertEmoji(emoji) {
-  const input = document.getElementById('chat-input');
-  input.value += emoji;
-  input.focus();
-  updateSendButton();
+async function deleteMessage(msgId) {
+  if (!confirm('确定删除这条消息？')) return;
+  try {
+    await api(`/messages/${msgId}`, { method: 'DELETE' });
+    await loadMessages();
+  } catch (err) { alert('删除失败: ' + err.message); }
 }
 
-// ── MODEL SELECT ─────────────────────────────────────────────────────────────
-function toggleModelMenu() {
-  document.getElementById('model-menu').classList.toggle('hidden');
-}
-function selectModel(model, label) {
-  currentModel = model;
-  document.getElementById('model-label').textContent = label;
-  document.getElementById('model-menu').classList.add('hidden');
-  localStorage.setItem('daisy-model', model);
-  localStorage.setItem('daisy-model-label', label);
+async function editMessage(msgId, newContent) {
+  try {
+    await api(`/messages/${msgId}`, { method: 'PUT', body: { content: newContent } });
+    await loadMessages();
+  } catch (err) { alert('编辑失败: ' + err.message); }
 }
 
-// ── INPUT HELPERS ────────────────────────────────────────────────────────────
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-}
-function updateSendButton() {
-  const hasContent = document.getElementById('chat-input').value.trim() !== '';
-  const btn = document.getElementById('send-btn');
-  btn.style.opacity = hasContent ? '1' : '0.5';
-}
-function handleChatKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    sendMessage();
-  }
+async function addReaction(msgId, emoji) {
+  try {
+    await api(`/messages/${msgId}/reactions`, { method: 'POST', body: { emoji } });
+    document.getElementById('reaction-picker').classList.remove('show');
+    hideContextMenu();
+    await loadMessages();
+  } catch (err) { console.error('Reaction error:', err); }
 }
 
-// ── SCROLL ───────────────────────────────────────────────────────────────────
-function scrollToBottom() {
-  const main = document.getElementById('chat-messages');
-  if (main) setTimeout(() => { main.scrollTop = main.scrollHeight; }, 100);
+function quickReact(emoji) {
+  const msgId = contextMessageId;
+  if (!msgId) return;
+  addReaction(msgId, emoji);
 }
 
-// ── READ RECEIPTS ────────────────────────────────────────────────────────────
+// ── VERSION SWITCHING ─────────────────────────────────────────────────────
+async function showVersionSelector(msgId) {
+  try {
+    const versions = await api(`/messages/${msgId}/versions`);
+    const list = document.getElementById('version-list');
+    list.innerHTML = versions.map(v => `
+      <div class="p-4 rounded-xl border ${v.current ? 'border-primary bg-primary-container/10' : 'border-outline-variant/20 bg-surface-container-high'} cursor-pointer hover:border-primary transition-colors" onclick="switchVersion('${msgId}',${v.version})">
+        <div class="flex justify-between items-center mb-1"><span class="font-bold text-sm">版本 ${v.version}</span>${v.current ? '<span class="text-xs bg-primary-container text-primary px-2 py-0.5 rounded-full">当前</span>' : ''}</div>
+        <p class="text-sm text-secondary truncate">${truncate(v.content, 100)}</p>
+      </div>`).join('');
+    document.getElementById('version-selector').classList.add('show');
+  } catch (err) { alert('获取版本失败: ' + err.message); }
+}
+
+async function switchVersion(msgId, targetVersion) {
+  try {
+    await api(`/messages/${msgId}/switch-version`, { method: 'POST', body: { targetVersion } });
+    document.getElementById('version-selector').classList.remove('show');
+    await loadMessages();
+  } catch (err) { alert('切换版本失败: ' + err.message); }
+}
+
+// ── QUOTE ──────────────────────────────────────────────────────────────────
+function cancelQuote() { quotedMessage = null; document.getElementById('quote-bar').classList.remove('show'); document.getElementById('quote-text').textContent = ''; }
+
+// ── EMOJI PICKER ───────────────────────────────────────────────────────────
+function toggleEmojiPicker() { document.getElementById('emoji-picker').classList.toggle('show'); document.getElementById('reaction-picker').classList.remove('show'); }
+function insertEmoji(emoji) { const input = document.getElementById('chat-input'); input.value += emoji; input.focus(); updateSendButton(); document.getElementById('emoji-picker').classList.remove('show'); }
+
+// ── MODEL SELECT ───────────────────────────────────────────────────────────
+function toggleModelMenu() { document.getElementById('model-menu').classList.toggle('hidden'); }
+function selectModel(model, label) { currentModel = model; document.getElementById('model-label').textContent = label; document.getElementById('model-menu').classList.add('hidden'); localStorage.setItem('daisy-model', model); localStorage.setItem('daisy-model-label', label); }
+
+// ── INPUT HELPERS ──────────────────────────────────────────────────────────
+function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 120) + 'px'; }
+function updateSendButton() { const btn = document.getElementById('send-btn'); btn.style.opacity = document.getElementById('chat-input').value.trim() ? '1' : '0.5'; }
+function handleChatKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+
+// ── SCROLL ─────────────────────────────────────────────────────────────────
+function scrollToBottom() { const main = document.getElementById('chat-messages'); if (main) setTimeout(() => { main.scrollTop = main.scrollHeight; }, 100); }
+
+// ── READ RECEIPTS ──────────────────────────────────────────────────────────
 function setupMessageObservers() {
   if (!('IntersectionObserver' in window)) return;
   const observer = new IntersectionObserver((entries) => {
     const visibleIds = entries.filter(e => e.isIntersecting).map(e => e.target.dataset.msgId).filter(Boolean);
-    if (visibleIds.length) {
-      api('/messages/mark-read', { method: 'POST', body: { messageIds: visibleIds } }).catch(() => {});
-    }
+    if (visibleIds.length) api('/messages/mark-read', { method: 'POST', body: { messageIds: visibleIds } }).catch(() => {});
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-msg-id]').forEach(el => observer.observe(el));
 }
 
-// ── AVATAR UPLOAD ────────────────────────────────────────────────────────────
-function triggerAvatarUpload() {
-  document.getElementById('avatar-input').click();
-}
+// ── AVATAR UPLOAD ──────────────────────────────────────────────────────────
+function triggerAvatarUpload() { document.getElementById('avatar-input').click(); }
 async function uploadAvatar(event) {
   const file = event.target.files[0];
   if (!file) return;
@@ -975,103 +759,63 @@ async function uploadAvatar(event) {
   reader.onload = async function() {
     const base64 = reader.result;
     try {
-      const result = await api('/upload', { method: 'POST', body: { image: base64, filename: `avatar-${Date.now()}.${file.name.split('.').pop()}` } });
-      ['avatar-img-home','avatar-img-sessions','avatar-img-settings','chat-avatar'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.src = result.url;
-      });
+      const result = await api('/upload', { method: 'POST', body: { image: base64, filename: `avatar-${Date.now()}.${file.name.split('.').pop()}`, bucket: 'avatars' } });
+      ['avatar-img-home','avatar-img-sessions','avatar-img-settings','chat-avatar'].forEach(id => { const el = document.getElementById(id); if (el) el.src = result.url; });
+      // Also update all AI avatars in chat
+      document.querySelectorAll('img[id^="ai-avatar-"]').forEach(img => { img.src = result.url; });
       localStorage.setItem('daisy-avatar-url', result.url);
-    } catch (err) {
-      alert('头像上传失败: ' + err.message);
-    }
+    } catch (err) { alert('头像上传失败: ' + err.message); }
   };
   reader.readAsDataURL(file);
   event.target.value = '';
 }
 
-// ── CLEAR ALL ────────────────────────────────────────────────────────────────
+// ── CLEAR ALL ──────────────────────────────────────────────────────────────
 function showClearModal() { document.getElementById('clearModal').classList.remove('hidden'); }
 function hideClearModal() { document.getElementById('clearModal').classList.add('hidden'); }
 async function confirmClearAll() {
-  try {
-    await api('/clear-all', { method: 'DELETE' });
-    hideClearModal();
-    currentSessionId = null;
-    document.getElementById('messages-container').innerHTML = '<div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary">所有数据已清空</span></div>';
-  } catch (err) {
-    alert('清空失败: ' + err.message);
-  }
+  try { await api('/clear-all', { method: 'DELETE' }); hideClearModal(); currentSessionId = null; document.getElementById('messages-container').innerHTML = '<div class="flex justify-center my-8"><span class="bg-surface-container-highest/40 px-6 py-2 rounded-full text-[12px] font-label-md text-secondary">所有数据已清空</span></div>'; }
+  catch (err) { alert('清空失败: ' + err.message); }
 }
 
-// ── EXPORT ───────────────────────────────────────────────────────────────────
+// ── EXPORT ─────────────────────────────────────────────────────────────────
 async function exportChat() {
-  if (!currentSessionId) {
-    // Export all sessions or prompt
-    try {
+  try {
+    if (!currentSessionId) {
       const sessions = await api('/sessions');
       if (!sessions.length) { alert('没有可导出的对话'); return; }
       const allData = [];
-      for (const s of sessions) {
-        const msgs = await api(`/sessions/${s.id}/messages`);
-        allData.push({ session: s, messages: msgs });
-      }
+      for (const s of sessions) { const msgs = await api(`/sessions/${s.id}/messages`); allData.push({ session: s, messages: msgs }); }
       downloadJSON(allData, `daisy-home-all-${new Date().toISOString().slice(0,10)}.json`);
-    } catch (err) {
-      alert('导出失败: ' + err.message);
-    }
-  } else {
-    try {
+    } else {
       const data = await api(`/export/${currentSessionId}`);
       downloadJSON(data, `daisy-home-chat-${new Date().toISOString().slice(0,10)}.json`);
-    } catch (err) {
-      alert('导出失败: ' + err.message);
     }
-  }
+  } catch (err) { alert('导出失败: ' + err.message); }
 }
+function downloadJSON(data, filename) { const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url); }
 
-function downloadJSON(data, filename) {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; a.click();
-  URL.revokeObjectURL(url);
-}
-
-// ── SETTINGS ─────────────────────────────────────────────────────────────────
+// ── SETTINGS ───────────────────────────────────────────────────────────────
 function loadSettings() {
-  try {
-    const saved = JSON.parse(localStorage.getItem('daisy-settings') || '{}');
-    settings = { ...settings, ...saved };
-  } catch(e) {}
+  try { const saved = JSON.parse(localStorage.getItem('daisy-settings') || '{}'); settings = { ...settings, ...saved }; } catch(e) {}
   applySettings();
-  // Load model
-  const model = localStorage.getItem('daisy-model');
-  const label = localStorage.getItem('daisy-model-label');
-  if (model) { currentModel = model; document.getElementById('model-label').textContent = label || model; }
-  // Load avatar
+  const model = localStorage.getItem('daisy-model'); const label = localStorage.getItem('daisy-model-label');
+  if (model) { currentModel = model; const el = document.getElementById('model-label'); if (el) el.textContent = label || model; }
   const avatarUrl = localStorage.getItem('daisy-avatar-url');
-  if (avatarUrl) {
-    ['avatar-img-home','avatar-img-sessions','avatar-img-settings','chat-avatar'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.src = avatarUrl;
-    });
-  }
+  if (avatarUrl) { ['avatar-img-home','avatar-img-sessions','avatar-img-settings','chat-avatar'].forEach(id => { const el = document.getElementById(id); if (el) el.src = avatarUrl; }); }
 }
 
 function applySettings() {
-  // Night mode
   if (settings.nightMode) document.documentElement.classList.add('dark');
   else document.documentElement.classList.remove('dark');
-  document.getElementById('nightModeToggle').checked = settings.nightMode;
-  document.getElementById('toggle-notifications').checked = settings.notifications;
-  document.getElementById('toggle-solitude').checked = settings.solitude;
-  // Font size
+  const nmt = document.getElementById('nightModeToggle'); if (nmt) nmt.checked = settings.nightMode;
+  const tn = document.getElementById('toggle-notifications'); if (tn) tn.checked = settings.notifications;
+  const ts = document.getElementById('toggle-solitude'); if (ts) ts.checked = settings.solitude;
   document.documentElement.classList.remove('font-size-large','font-size-xlarge');
   if (settings.fontSize === 'large') document.documentElement.classList.add('font-size-large');
   if (settings.fontSize === 'xlarge') document.documentElement.classList.add('font-size-xlarge');
-  document.getElementById('font-size-label').textContent = settings.fontSize === 'standard' ? '标准' : settings.fontSize === 'large' ? '大' : '特大';
-  // Chat bg
-  document.getElementById('chat-messages').style.backgroundColor = settings.chatBg;
+  const fsl = document.getElementById('font-size-label'); if (fsl) fsl.textContent = settings.fontSize === 'standard' ? '标准' : settings.fontSize === 'large' ? '大' : '特大';
+  const cm = document.getElementById('chat-messages'); if (cm) cm.style.backgroundColor = settings.chatBg;
 }
 
 function saveSetting(key, value) {
@@ -1081,113 +825,133 @@ function saveSetting(key, value) {
   api('/settings', { method: 'PUT', body: { [key]: value } }).catch(() => {});
 }
 
-function toggleNightMode() {
-  settings.nightMode = document.getElementById('nightModeToggle').checked;
-  saveSetting('nightMode', settings.nightMode);
-}
+function toggleNightMode() { const el = document.getElementById('nightModeToggle'); if (el) { settings.nightMode = el.checked; saveSetting('nightMode', settings.nightMode); } }
 
 function cycleFontSize() {
-  const sizes = ['standard','large','xlarge'];
-  const labels = ['标准','大','特大'];
-  const idx = sizes.indexOf(settings.fontSize);
-  const next = (idx + 1) % 3;
-  settings.fontSize = sizes[next];
-  saveSetting('fontSize', settings.fontSize);
+  const sizes = ['standard','large','xlarge']; const labels = ['标准','大','特大'];
+  const idx = sizes.indexOf(settings.fontSize); const next = (idx + 1) % 3;
+  settings.fontSize = sizes[next]; saveSetting('fontSize', settings.fontSize);
 }
 
 function showBgPicker() { document.getElementById('bgModal').classList.remove('hidden'); }
 function setChatBg(color, name) {
-  settings.chatBg = color;
-  saveSetting('chatBg', color);
+  settings.chatBg = color; saveSetting('chatBg', color);
   document.getElementById('bgModal').classList.add('hidden');
-  document.getElementById('chat-messages').style.backgroundColor = color;
+  const cm = document.getElementById('chat-messages'); if (cm) cm.style.backgroundColor = color;
 }
 
-// ── DIARY ────────────────────────────────────────────────────────────────────
-function openDiary() { document.getElementById('diaryModal').classList.remove('hidden'); }
+// ── FULL-SCREEN DIARY EDITOR ───────────────────────────────────────────────
+function openDiary() {
+  document.getElementById('diary-date').value = new Date().toISOString().slice(0,10);
+  document.getElementById('diary-input-full').value = '';
+  diaryMood = ''; document.getElementById('diary-mood').value = '';
+  document.querySelectorAll('.mood-btn').forEach(b => { b.classList.remove('bg-primary-container','border-primary'); b.classList.add('border-outline-variant/30'); });
+  loadDiaryHistory();
+  navigateToPage('diary-editor');
+}
+
+function closeDiaryEditor() {
+  navigateTo('home');
+}
+
+function navigateToPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+  const isMainPage = ['home','sessions','settings'].includes(page);
+  document.getElementById('bottom-nav').style.display = isMainPage ? 'flex' : 'none';
+}
+
 async function saveDiary() {
-  const content = document.getElementById('diary-input').value.trim();
-  const mood = document.getElementById('diary-mood').value;
+  const content = document.getElementById('diary-input-full').value.trim();
+  const mood = diaryMood;
+  const diaryDate = document.getElementById('diary-date').value;
   if (!content) return alert('请输入日记内容');
   try {
-    await api('/diary', { method: 'POST', body: { content, mood } });
-    document.getElementById('diaryModal').classList.add('hidden');
-    document.getElementById('diary-input').value = '';
-    document.getElementById('diary-mood').value = '';
+    await api('/diary', { method: 'POST', body: { content, mood, diary_date: diaryDate } });
+    document.getElementById('diary-input-full').value = '';
+    diaryMood = ''; document.getElementById('diary-mood').value = '';
+    document.querySelectorAll('.mood-btn').forEach(b => { b.classList.remove('bg-primary-container','border-primary'); b.classList.add('border-outline-variant/30'); });
+    loadDiaryHistory();
+    navigateTo('home');
     loadDiaryEntries();
-  } catch (err) {
-    alert('保存失败: ' + err.message);
-  }
+  } catch (err) { alert('保存失败: ' + err.message); }
 }
 
+async function loadDiaryHistory() {
+  try {
+    const entries = await api('/diary?limit=20');
+    const list = document.getElementById('diary-history-list');
+    if (list && entries.length) {
+      list.innerHTML = entries.map(e => `
+        <div class="tonal-elevation-1 p-4 rounded-2xl">
+          <div class="flex justify-between items-start mb-2"><span class="text-sm text-secondary">${e.diary_date || formatDate(new Date(e.created_at))}</span><span class="text-lg">${e.mood||''}</span></div>
+          <p class="text-body-md">${escapeHtml(e.content)}</p>
+          ${e.author === 'ai' ? '<span class="text-xs text-primary mt-1">🤖 AI 生成</span>' : ''}
+        </div>`).join('');
+    } else if (list) { list.innerHTML = '<p class="text-secondary text-sm">还没有日记，开始写吧 ✍️</p>'; }
+  } catch (err) { /* silent */ }
+}
+
+// ── DIARY (home page activity) ─────────────────────────────────────────────
 async function loadDiaryEntries() {
   try {
     const entries = await api('/diary?limit=5');
     const list = document.getElementById('activity-list');
-    if (entries.length) {
+    if (list && entries.length) {
       list.innerHTML = entries.map(e => `
         <div class="tonal-elevation-1 p-5 rounded-2xl flex gap-4 items-center transition-all active:bg-surface-container-low">
           <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center flex-shrink-0 text-primary"><span class="material-symbols-outlined">menu_book</span></div>
-          <div class="flex-1 min-w-0">
-            <div class="flex justify-between items-baseline mb-1"><p class="font-bold text-base truncate">${e.author === 'ai' ? '小D' : '我'} 写了日记 ${e.mood||''}</p><span class="text-xs text-outline">${formatTime(e.created_at)}</span></div>
-            <p class="text-sm text-secondary/80 truncate">"${truncate(e.content, 40)}"</p>
-          </div>
-        </div>
-      `).join('');
+          <div class="flex-1 min-w-0"><div class="flex justify-between items-baseline mb-1"><p class="font-bold text-base truncate">${e.author === 'ai' ? '小D' : '我'} 写了日记 ${e.mood||''}</p><span class="text-xs text-outline">${formatTime(e.created_at)}</span></div><p class="text-sm text-secondary/80 truncate">"${truncate(e.content, 40)}"</p></div>
+        </div>`).join('');
     }
   } catch (err) { /* silent */ }
 }
 
-async function loadEvents() {
+// ── EVENTS ─────────────────────────────────────────────────────────────────
+async function loadEventsForActivity() {
   try {
-    const events = await api('/events');
+    const events = await api('/events?limit=5');
     const list = document.getElementById('activity-list');
-    const current = list.innerHTML;
-    events.forEach(e => {
-      if (!current.includes(e.title)) {
-        list.innerHTML += `
-          <div class="tonal-elevation-1 p-5 rounded-2xl flex gap-4 items-center transition-all active:bg-surface-container-low">
+    if (list && events.length) {
+      const current = list.innerHTML;
+      events.forEach(e => {
+        if (!current.includes(e.title)) {
+          list.innerHTML += `<div class="tonal-elevation-1 p-5 rounded-2xl flex gap-4 items-center transition-all active:bg-surface-container-low">
             <div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center flex-shrink-0 text-tertiary"><span class="material-symbols-outlined">celebration</span></div>
-            <div class="flex-1 min-w-0"><div class="flex justify-between items-baseline mb-1"><p class="font-bold text-base truncate">${e.title}</p><span class="text-xs text-outline">${e.type}</span></div><p class="text-sm text-secondary/80 truncate">${e.event_date}</p></div>
-          </div>`;
-      }
-    });
+            <div class="flex-1 min-w-0"><div class="flex justify-between items-baseline mb-1"><p class="font-bold text-base truncate">${escapeHtml(e.title)}</p><span class="text-xs text-outline">${e.type}</span></div><p class="text-sm text-secondary/80 truncate">${e.event_date}</p></div></div>`;
+        }
+      });
+    }
   } catch (err) { /* silent */ }
 }
 
-// ── UTILS ────────────────────────────────────────────────────────────────────
-function formatTime(ts) {
-  if (!ts) return '';
-  const d = new Date(ts);
-  const now = new Date();
-  if (isSameDay(d, now)) return d.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-  const yesterday = new Date(now); yesterday.setDate(yesterday.getDate() - 1);
-  if (isSameDay(d, yesterday)) return '昨天';
-  if (d.getFullYear() === now.getFullYear()) return `${d.getMonth()+1}月${d.getDate()}日`;
-  return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;
+function showQuickEventForm() {
+  document.getElementById('event-date').value = new Date().toISOString().slice(0,10);
+  document.getElementById('event-title').value = '';
+  document.getElementById('eventModal').classList.remove('hidden');
 }
 
-function formatDate(d) {
-  const now = new Date();
-  if (isSameDay(d, now)) return `今天 ${d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`;
-  const yesterday = new Date(now); yesterday.setDate(yesterday.getDate() - 1);
-  if (isSameDay(d, yesterday)) return `昨天 ${d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`;
-  return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+async function saveEvent() {
+  const title = document.getElementById('event-title').value.trim();
+  const eventDate = document.getElementById('event-date').value;
+  const type = document.getElementById('event-type').value;
+  if (!title || !eventDate) return alert('请填写事件标题和日期');
+  try {
+    await api('/events', { method: 'POST', body: { title, event_date: eventDate, type } });
+    document.getElementById('eventModal').classList.add('hidden');
+    loadAllCalendarData();
+    loadEventsForActivity();
+  } catch (err) { alert('保存失败: ' + err.message); }
 }
 
-function isSameDay(a, b) {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-}
-
-function truncate(str, len) {
-  if (!str) return '';
-  return str.length > len ? str.substring(0, len) + '...' : str;
-}
-
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
+// ── UTILS ──────────────────────────────────────────────────────────────────
+function formatTime(ts) { if (!ts) return ''; const d = new Date(ts); const now = new Date(); if (isSameDay(d, now)) return d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}); const yesterday = new Date(now); yesterday.setDate(yesterday.getDate()-1); if (isSameDay(d, yesterday)) return '昨天'; if (d.getFullYear()===now.getFullYear()) return `${d.getMonth()+1}月${d.getDate()}日`; return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; }
+function formatDate(d) { const now = new Date(); if (isSameDay(d, now)) return `今天 ${d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`; const yesterday = new Date(now); yesterday.setDate(yesterday.getDate()-1); if (isSameDay(d, yesterday)) return `昨天 ${d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})}`; return `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`; }
+function isSameDay(a, b) { return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+function truncate(str, len) { if (!str) return ''; return str.length > len ? str.substring(0, len) + '...' : str; }
+function escapeHtml(str) { if (!str) return ''; return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 </script>
 </body>
 </html>
